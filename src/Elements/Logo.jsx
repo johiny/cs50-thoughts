@@ -3,17 +3,13 @@ import logo from "../media/cs50thoughts.png"
 import styled from 'styled-components'
 const Logo = (props) => {
   return (
-    <div className={props.className}>
-    <img src={logo}/>
-    </div>
+    <img src={logo} className={props.className}/>
   )
 }
 
 export default styled(Logo)`
-    display: flex;
-    justify-content: center;
-    img{
-        width: 50vh;
-        margin-top: 2vh;
-    }
+grid-column: 2/6;
+grid-row: 2/7;
+width: 100%;
+height: 100%;
 `
