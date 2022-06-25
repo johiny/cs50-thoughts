@@ -9,9 +9,8 @@ const AppContainer = (props) => {
 }
 
 export default styled(AppContainer)`
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin: 0 2vh;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 4vh repeat(15, 1fr);
-    height: 100vh;
 `

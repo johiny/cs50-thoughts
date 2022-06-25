@@ -8,8 +8,9 @@ const Logo = (props) => {
 }
 
 export default styled(Logo)`
-grid-column: 2/6;
-grid-row: 2/7;
-width: 100%;
-height: 100%;
+margin-top: 2vh;
+margin-bottom: 1vh;
+margin-left: auto;
+margin-right: auto;
+width: 35vh;
 `
