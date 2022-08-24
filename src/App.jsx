@@ -1,21 +1,15 @@
 import 'normalize.css';
 import './index.css'
 import AppContainer from './Elements/AppContainer';
-import Logo from './Elements/Logo';
+import HomeCover from './Elements/HomeCover';
 import Thoughts from './Elements/Thoughts';
-import InsertThought from './Elements/InsertThought';
-import Thought from './Elements/Thought';
+
 function App() {
 
   return (
     <AppContainer>
-      <Logo/>
-      <Thoughts>
-        <InsertThought/>
-        <Thought/>
-        <Thought/>
-        <Thought/>
-      </Thoughts>
+      <HomeCover/>
+      <Thoughts/>
     </AppContainer>
   )
 }

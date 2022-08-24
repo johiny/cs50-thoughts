@@ -2,15 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 const AppContainer = (props) => {
   return (
-    <div className={props.className}>
+    <StyledAppContainer>
         {props.children}
-    </div>
+    </StyledAppContainer>
   )
 }
 
-export default styled(AppContainer)`
-    display: flex;
+const StyledAppContainer = styled.div`
+   display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0 2vh;
 `
+
+export default AppContainer
