@@ -5,13 +5,21 @@
 .home-text{
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
-    font-size: 4em;
+    font-size: 2.5vh;
     color: rgba(0, 0, 0, 0);
     color: #fff;
     text-align: center;
-    text-justify: inter-word;
 }
-
+@media only screen and (min-width: 650px)  {
+    .home-text{
+        font-size: 3.5vh;
+    }
+    }
+@media only screen and (min-width: 1200px)  {
+    .home-text{
+            font-size: 6.5vh;
+        }
+}    
 
 .home-text__cursor{
     position: relative;

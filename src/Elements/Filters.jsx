@@ -27,9 +27,15 @@ const StyledFilters = styled.div`
     position: relative;
     display: flex;
     flex-direction: row;
-    margin-left: auto;
     gap: 1em;
-    margin-right: 5vh;
+    margin: 0 2vh;
+    padding: 0;
+    width: fit-content;
+    @media only screen and (min-width: 650px)  {
+        margin: 0;
+        margin-left: auto;
+        margin-right: 6vh;
+}   
 `
 const StyledFilter = styled.div`
     :hover{

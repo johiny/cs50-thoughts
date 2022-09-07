@@ -22,7 +22,8 @@ const StyledThought = styled.div`
   font-size: 1em;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  grid-column: span 2;
+  grid-column: span 6;
+  grid-row: span 7;
   box-shadow:
     0 0 0.2em #fff,
     0 0 0.2em #fff,
@@ -33,6 +34,12 @@ const StyledThought = styled.div`
     0 0 0.6em var(--card-color),
     0 0 0.6em var(--card-color),
     0 0 0.6em var(--card-color);
+    @media only screen and (min-width: 650px)  {
+    grid-column: span 3;
+  }
+  @media only screen and (min-width: 800px)  {
+    grid-column: span 2;
+  }
   @media only screen and (min-width: 1200px)  {
     grid-column: span 1;
     grid-row: span 5;

@@ -36,6 +36,7 @@ const StyledHomeCover = styled.div`
     height: 90vh;
     margin-bottom: 1vh;
     gap: 10vh;
+    margin: 0 5vh;
 `
 
 export default HomeCover

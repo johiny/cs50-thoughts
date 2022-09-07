@@ -3,14 +3,19 @@ import logo from "../media/cs50thoughts.png"
 import styled from 'styled-components'
 const Logo = (props) => {
   return (
-    <StyledLogo src={logo} className={props.className}/>
+    <StyledLogo src={logo}/>
   )
 }
 
 const StyledLogo = styled.img`
-width: 50vh;
+width: 30vh;
 animation: floating 3500ms infinite;
-
+@media only screen and (min-width: 650px)  {
+  width: 35vh;
+  }
+  @media only screen and (min-width: 1200px)  {
+            width: 50vh;
+}
 @keyframes floating {
 	0% {
     filter: blur(0.3px);
