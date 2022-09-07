@@ -74,7 +74,7 @@ const StyledThoughts = styled.div`
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: 5vh;
     gap: 3.5vh;
-    margin: 0 5vh;
+    margin: 2vh 5vh;
 `
 
 export default Thoughts

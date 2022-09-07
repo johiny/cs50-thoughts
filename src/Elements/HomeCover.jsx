@@ -1,45 +1,41 @@
 import React from 'react'
 import styled from 'styled-components'
 import Logo from './Logo';
+import Typewriter from 'typewriter-effect';
+
 const HomeCover = () => {
   return (
     <StyledHomeCover>
-       <StyledText>Welcome to....</StyledText>
        <Logo/>
-       <StyledText>the place where you can leave your thougths about CS50</StyledText>
+       <Typewriter options={{
+        strings: ['This is the place to share your thoughts on CS50',
+         'Tu lugar para compartir tus pensamientos sobre CS50',
+          '在这里分享您对 CS50 的看法',
+          "C'est l'endroit idéal pour partager vos réflexions sur le CS50",
+           'ここは、CS50 に関するあなたの考えを共有する場所です。',
+           'O lugar para compartilhar seus pensamentos sobre CS50',
+           'Der Ort, an dem Sie Ihre Gedanken zu CS50 teilen können',
+           'Il posto giusto per condividere le tue opinioni su CS50',
+          'CS50 पर अपने विचार साझा करने का स्थान'],
+        autoStart: true,
+        loop: true,
+        wrapperClassName: 'home-text',
+        pauseFor: 2000,
+        cursorClassName: 'home-text__cursor'
+       }} />
     </StyledHomeCover>
   )
 }
 
-const StyledHomeCover = styled.radialGradient`
+const StyledHomeCover = styled.div`
+    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    justify-content: center;
+    height: 90vh;
     margin-bottom: 1vh;
-    gap: 2vh;
-    margin-top: 5vh;
-`
-
-const StyledText = styled.h1`
-    --card-color: #A51C30;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 8em;
-    color: rgba(0, 0, 0, 0);
-    -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: #fff;
-    text-shadow: 0 0 0em #fff,
-    0 0 0em #fff,
-    0 0 0em #fff,
-    /* Green glow */
-    0 0 0.2em var(--card-color),
-    0 0 0.2em var(--card-color),
-    0 0 0.2em var(--card-color),
-    0 0 0.2em var(--card-color),
-    0 0 0.2em var(--card-color);;
-    margin: 0;
-    text-align: center;
+    gap: 10vh;
 `
 
 export default HomeCover
