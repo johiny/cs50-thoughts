@@ -9,7 +9,7 @@ const Logo = (props) => {
 
 const StyledLogo = styled.img`
 width: 30vh;
-animation: floating 3500ms infinite;
+animation: floating 3500ms infinite cubic-bezier(.25,.46,.45,.94);
 @media only screen and (min-width: 650px)  {
   width: 35vh;
   }
@@ -31,35 +31,6 @@ animation: floating 3500ms infinite;
 		transform: translatey(0px);
 	}
 }
-
-@-webkit-keyframes pulse {
-  0% {
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
-  }
-  50% {
-  -webkit-transform: scale3d(1.05, 1.05, 1.05);
-  transform: scale3d(1.05, 1.05, 1.05);
-  }
-  100% {
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
-  }
-  }
-  @keyframes pulse {
-  0% {
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
-  }
-  50% {
-  -webkit-transform: scale3d(1.05, 1.05, 1.05);
-  transform: scale3d(1.05, 1.05, 1.05);
-  }
-  100% {
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
-  }
-  } 
 `
 
 export default Logo

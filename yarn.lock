@@ -637,7 +637,7 @@
   dependencies:
     "performance-now" "^2.1.0"
 
-"react-dom@^17.x || ^18.x", "react-dom@^18.0.0", "react-dom@>= 16.8.0":
+"react-dom@^16.8.0 || ^17 || ^18", "react-dom@^17.x || ^18.x", "react-dom@^18.0.0", "react-dom@>= 16.8.0":
   "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   "version" "18.2.0"
@@ -654,6 +654,11 @@
   "integrity" "sha512-XP8A9BT0CpRBD+NYLLeIhld/RqG9+gktUjW1FkE+Vm7OCinbG1SshcK5tb9ls4kzvjZr9mOQc7HYgBngEyPAXg=="
   "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.13.0.tgz"
   "version" "0.13.0"
+
+"react-simple-animate@^3.5.1":
+  "integrity" "sha512-VpQS4nYU3G8+xU9hMinbeFZqHRVe+rNicec+y+Jaz3kHCV5TlBSkTzoaz/Nycsh2ShoWWfqfhV3Rn8E85QNqZg=="
+  "resolved" "https://registry.npmjs.org/react-simple-animate/-/react-simple-animate-3.5.1.tgz"
+  "version" "3.5.1"
 
 "react@^17.x || ^18.x", "react@^18.0.0", "react@^18.2.0", "react@>= 16.8.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
