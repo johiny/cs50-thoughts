@@ -1,10 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import LikeAndDislike from './LikeAndDislike'
 const Thought = (props) => {
   return (
     <StyledThought feeling={props.feeling}>
         <p>{props.content}</p>
+        <ThoughtFooter>
+        <LikeAndDislike/>
         <span>{props.byUsername}</span>
+        </ThoughtFooter>
     </StyledThought>
   )
 }
@@ -53,8 +57,15 @@ const StyledThought = styled.div`
     overflow-wrap: break-word; 
     max-width : 100%;
   }
+`
+
+const ThoughtFooter = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   >span{
-    margin-left: auto;
+    align-self: flex-end;
+    font-style: italic;
   }
 `
 
