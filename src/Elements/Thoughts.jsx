@@ -4,141 +4,48 @@ import Thought from './Thought';
 import PageArrow from './PageArrow';
 import { keyframes } from 'styled-components';
 import { useState } from 'react';
-const apidata = JSON.parse(`[
-	{
-		"id": 1,
-		"byUsername": "johiny",
-		"content": "I love cs50 so much! i will never forget those weeks!",
-		"feeling": "positive",
-		"upVotes": 19,
-		"DownVotes": 4,
-		"createdDate": "2022-08-05T18:58:39.942Z"
-	},
-	{
-		"id": 2,
-		"byUsername": "johiny",
-		"content": "I love cs50 so much! web development is so fun!",
-		"feeling": "negative",
-		"upVotes": 14,
-		"DownVotes": 1,
-		"createdDate": "2022-08-05T19:25:05.707Z"
-	},
-	{
-		"id": 3,
-		"byUsername": "johiny",
-		"content": "learning how to code was awesome!",
-		"feeling": "positive",
-		"upVotes": 0,
-		"DownVotes": 0,
-		"createdDate": "2022-08-08T21:10:58.144Z"
-	},
-	{
-		"id": 4,
-		"byUsername": "karol",
-		"content": "cs50 was a trash!",
-		"feeling": "positive",
-		"upVotes": 0,
-		"DownVotes": 1,
-		"createdDate": "2022-08-10T22:16:57.402Z"
-	},
-	{
-		"id": 6,
-		"byUsername": "yoru",
-		"content": "cs50 is the best course to start with CS",
-		"feeling": "positive",
-		"upVotes": 1,
-		"DownVotes": 1,
-		"createdDate": "2022-08-18T03:17:23.191Z"
-	},
-  {
-		"id": 2,
-		"byUsername": "johiny",
-		"content": "I love cs50 so much! web development is so fun!",
-		"feeling": "negative",
-		"upVotes": 14,
-		"DownVotes": 1,
-		"createdDate": "2022-08-05T19:25:05.707Z"
-	},
-	{
-		"id": 1,
-		"byUsername": "johiny",
-		"content": "I love cs50 so much! i will never forget those weeks!",
-		"feeling": "positive",
-		"upVotes": 19,
-		"DownVotes": 4,
-		"createdDate": "2022-08-05T18:58:39.942Z"
-	},
-	{
-		"id": 2,
-		"byUsername": "johiny",
-		"content": "I love cs50 so much! web development is so fun!",
-		"feeling": "negative",
-		"upVotes": 14,
-		"DownVotes": 1,
-		"createdDate": "2022-08-05T19:25:05.707Z"
-	},
-	{
-		"id": 3,
-		"byUsername": "johiny",
-		"content": "learning how to code was awesome!",
-		"feeling": "positive",
-		"upVotes": 0,
-		"DownVotes": 0,
-		"createdDate": "2022-08-08T21:10:58.144Z"
-	},
-	{
-		"id": 4,
-		"byUsername": "karol",
-		"content": "cs50 was a trash!",
-		"feeling": "positive",
-		"upVotes": 0,
-		"DownVotes": 1,
-		"createdDate": "2022-08-10T22:16:57.402Z"
-	},
-	{
-		"id": 6,
-		"byUsername": "yoru",
-		"content": "cs50 is the best course to start with CS",
-		"feeling": "positive",
-		"upVotes": 1,
-		"DownVotes": 1,
-		"createdDate": "2022-08-18T03:17:23.191Z"
-	},
-  {
-		"id": 2,
-		"byUsername": "johiny",
-		"content": "I love cs50 so much! web development is so fun!",
-		"feeling": "negative",
-		"upVotes": 14,
-		"DownVotes": 1,
-		"createdDate": "2022-08-05T19:25:05.707Z"
-	}
-]`)
-
+import usePaginationManager from './usePaginationManager';
 const Thoughts = (props) => {
 	const [currentAnimation, setCurrentAnimation] = useState('')
-	const animationControl = (direction) => {
-		if(direction === 'backwards'){
-			setCurrentAnimation(goOutRight)
-		}
-	}
+	const {currentPage, pageChanger, noMoreLeft, noMoreRight} = usePaginationManager()
+	const [leftArrowLimit, setleftArrowLimit] = useState(false)
+	const [rightArrowLimit, setrightArrowLimit] = useState(false)
   return (
 	<StyledThoughtsContainer>
-		<PageArrow arrowDirection={'90deg'} spaceDirection={`right: 0.4vh`} ArrowHandler={() => setCurrentAnimation(goOutRight)} />
+		<PageArrow arrowDirection={'90deg'} spaceDirection={`right: 0.4vh`} ArrowLimit={leftArrowLimit} ArrowLimitAfterAction={() => setleftArrowLimit(false)}
+		ArrowHandler={() => {
+			if(noMoreLeft){
+				setleftArrowLimit(true)
+				return
+			}
+			setCurrentAnimation(goOutRight)}}
+			onAnimationEnd={() => {
+				setleftArrowLimit(false)
+			}}/>
+
 		<StyledThoughts currentAnimation={currentAnimation} onAnimationEnd={() => {
 			if(currentAnimation === goOutRight){
 				setCurrentAnimation(goInLeft)
+				pageChanger('left')
 			}
 			else if(currentAnimation === goOutLeft){
 				setCurrentAnimation(goInRight)
+				pageChanger('right')
 			}
 		}}>
 			{props.children}
-			{apidata.map(thought => <Thought
+			{currentPage.map(thought => <Thought
 			{...thought}
 			/>)}
 		</StyledThoughts>
-		<PageArrow arrowDirection={'270deg'} spaceDirection={`left: 0.4vh`} ArrowHandler={() => setCurrentAnimation(goOutLeft)} />
+		<PageArrow arrowDirection={'270deg'} spaceDirection={`left: 0.4vh`} ArrowLimit={rightArrowLimit} ArrowLimitAfterAction={() => setrightArrowLimit(false)}
+		ArrowHandler={() => {
+			if(noMoreRight){
+				setrightArrowLimit(true)
+				return
+			}
+			setCurrentAnimation(goOutLeft)}}/>
+
 	</StyledThoughtsContainer>
   )
 }
@@ -167,11 +74,35 @@ const  goInLeft = keyframes`
     -webkit-transform-origin: 100% 50%;
             transform-origin: 100% 50%;
   }
-  100% {
+  75% {
     -webkit-transform: translateX(0) scaleY(1) scaleX(1);
             transform: translateX(0) scaleY(1) scaleX(1);
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
+  }
+  80% {
+    -webkit-transform: translateX(-25px) scaleY(1) scaleX(1);
+            transform: translateX(-25px) scaleY(1) scaleX(1);
+	-webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  85%{
+	-webkit-transform: translateX(0px) scaleY(1) scaleX(1);
+            transform: translateX(0px) scaleY(1) scaleX(1);
+	-webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  95% {
+    -webkit-transform: translateX(-15px) scaleY(1) scaleX(1);
+            transform: translateX(-15px) scaleY(1) scaleX(1);
+	-webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  100% {
+    -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+            transform: translateX(0) scaleY(1) scaleX(1);
+	-webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
 `
 const  goOutLeft = keyframes`
@@ -195,11 +126,35 @@ const  goInRight = keyframes`
     -webkit-transform-origin: 0% 50%;
             transform-origin: 0% 50%;
   }
-  100% {
+  75% {
     -webkit-transform: translateX(0) scaleY(1) scaleX(1);
             transform: translateX(0) scaleY(1) scaleX(1);
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
+  }
+  80% {
+    -webkit-transform: translateX(25px) scaleY(1) scaleX(1);
+            transform: translateX(25px) scaleY(1) scaleX(1);
+	-webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  85%{
+	-webkit-transform: translateX(0px) scaleY(1) scaleX(1);
+            transform: translateX(0px) scaleY(1) scaleX(1);
+	-webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  95% {
+    -webkit-transform: translateX(15px) scaleY(1) scaleX(1);
+            transform: translateX(15px) scaleY(1) scaleX(1);
+	-webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  100% {
+    -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+            transform: translateX(0) scaleY(1) scaleX(1);
+	-webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
 `
 
