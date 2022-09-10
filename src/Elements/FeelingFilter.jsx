@@ -5,35 +5,40 @@ import negativeIcon from '../media/NegativeIcon.svg'
 import positiveIcon from '../media/PositiveIcon.svg'
 import { useState } from 'react'
 import { keyframes } from 'styled-components'
+import { useThoughtsProviderAndController} from './ThoughtsProviderAndController'
 const FeelingFilter = () => {
-    const [currentFelingIcon, setCurrentFeelingicon] = useState(allIcon)
+    const {setFilters} = useThoughtsProviderAndController()
+    const [currentFeelingIcon, setCurrentFeelingicon] = useState(allIcon)
     const [FilterChangingStatus, setFilterChangingStatus] = useState('off')
     const filterChangerHandler = () => {
         if(FilterChangingStatus === 'fadeIn'){
             setFilterChangingStatus('off')
             return
         }
-        if(currentFelingIcon === allIcon){
+        if(currentFeelingIcon === allIcon){
             setCurrentFeelingicon(positiveIcon)
             setFilterChangingStatus('fadeIn')
+            setFilters(prev => ({...prev, feeling: 'positive'}))
         }
-        else if (currentFelingIcon === positiveIcon){
+        else if (currentFeelingIcon === positiveIcon){
             setCurrentFeelingicon(negativeIcon)
             setFilterChangingStatus('fadeIn')
+            setFilters(prev => ({...prev, feeling: 'negative'}))
         }
-        else if (currentFelingIcon === negativeIcon){
+        else if (currentFeelingIcon === negativeIcon){
             setCurrentFeelingicon(allIcon)
             setFilterChangingStatus('fadeIn')
+            setFilters(prev => ({...prev, feeling: null}))
         }
     }
     const filterOnClick = () => {
         setFilterChangingStatus('fadeOut')
     }
   return (
-    <StyledFilter currentIcon={currentFelingIcon} FilterChangingStatus={FilterChangingStatus} 
+    <StyledFilter currentIcon={currentFeelingIcon} FilterChangingStatus={FilterChangingStatus} 
     onClick={filterOnClick}>
         <h6>Show</h6>
-        <img src={currentFelingIcon} onAnimationEnd={filterChangerHandler}/>
+        <img src={currentFeelingIcon} onAnimationEnd={filterChangerHandler}/>
     </StyledFilter>
   )
 }

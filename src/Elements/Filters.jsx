@@ -3,21 +3,31 @@ import styled from 'styled-components'
 import filterArrow from '../media/filter-arrow.svg'
 import { useState } from 'react'
 import FeelingFilter from './FeelingFilter'
+import { useThoughtsProviderAndController} from './ThoughtsProviderAndController'
 const Filters = () => {
   return (
     <StyledFilters>
         <FeelingFilter/>
-        <Filter filter='Order By Date' initialArrowStatus={true}/>
-        <Filter filter='Order By Likes' initialArrowStatus={true}/>
-        <Filter filter='Order By Dislikes' initialArrowStatus={false} />
+        <Filter filter='Order By Date' initialArrowStatus={true} interFilterName ={'createDate'}/>
+        <Filter filter='Order By Likes' initialArrowStatus={true} interFilterName ={'upVotes'}/>
+        <Filter filter='Order By Dislikes' initialArrowStatus={false} interFilterName ={'downVotes'} />
     </StyledFilters>
   )
 }
 
 const Filter = (props) => {
+    const {filters, setFilters} = useThoughtsProviderAndController()
     const [arrowUp, setArrowStatus] = useState(props.initialArrowStatus)
     return(
-       <StyledFilter arrowUp={arrowUp} onClick={() => setArrowStatus(!arrowUp)}>
+       <StyledFilter arrowUp={arrowUp} onClick={() => {
+        setArrowStatus(!arrowUp)
+        if(filters[props.interFilterName] === 'desc'){
+            setFilters(prev => ({...prev, [props.interFilterName] : 'asc' }))
+        }
+        else{
+            setFilters(prev => ({...prev, [props.interFilterName] : 'desc' }))
+        }
+        }}>
         <h6>{props.filter}</h6>
         <img src={filterArrow}/>
        </StyledFilter>
