@@ -6,7 +6,7 @@ const Thought = (props) => {
     <StyledThought feeling={props.feeling}>
         <p>{props.content}</p>
         <ThoughtFooter>
-        <LikeAndDislike/>
+        <LikeAndDislike upVotes={props.upVotes} downVotes={props.DownVotes}/>
         <span>{props.byUsername}</span>
         </ThoughtFooter>
     </StyledThought>

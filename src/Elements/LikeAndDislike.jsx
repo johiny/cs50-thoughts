@@ -2,12 +2,12 @@ import React from 'react';
 import { keyframes } from 'styled-components';
 import styled from 'styled-components';
 import thumbIcon from '../media/thumbIcon.svg'
-const LikeAndDislike = () => {
+const LikeAndDislike = (props) => {
   return (
     <LikeAndDislikeContainer>
-        <LikesCounter>324</LikesCounter>
+        <LikesCounter>{props.upVotes}</LikesCounter>
         <Like src={thumbIcon}/>
-        <DislikesCounter>2</DislikesCounter>
+        <DislikesCounter>{props.downVotes}</DislikesCounter>
         <DisLike src={thumbIcon}/>
     </LikeAndDislikeContainer>
   )

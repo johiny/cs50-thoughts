@@ -33,7 +33,7 @@ const Thoughts = (props) => {
 				pageChanger('right')
 			}
 		}}>
-			{props.children}
+      {/* thoughts iteration */}
 			{currentPage.map(thought => <Thought
 			{...thought}
 			/>)}
