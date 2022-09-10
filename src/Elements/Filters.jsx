@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import filterArrow from '../media/filter-arrow.svg'
 import { useState } from 'react'
+import FeelingFilter from './FeelingFilter'
 const Filters = () => {
   return (
     <StyledFilters>
-        <Filter filter='Order By Feeling' initialArrowStatus={true}/>
+        <FeelingFilter/>
         <Filter filter='Order By Date' initialArrowStatus={true}/>
         <Filter filter='Order By Likes' initialArrowStatus={true}/>
         <Filter filter='Order By Dislikes' initialArrowStatus={false} />

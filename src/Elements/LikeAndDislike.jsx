@@ -57,7 +57,7 @@ const DisLike = styled.img`
     grid-column: 2;
     grid-row: 2;
     width: 2vw;
-    filter: invert(11%) sepia(52%) saturate(6522%) hue-rotate(342deg) brightness(94%) contrast(110%) drop-shadow(0 0 0.7px #fff) drop-shadow(0 0 3px #ac011b);;
+    filter: invert(11%) sepia(52%) saturate(6522%) hue-rotate(342deg) brightness(94%) contrast(110%) drop-shadow(0 0 0.7px #fff) drop-shadow(0 0 3px #ac011b);
     transform: rotate(-180deg);
     cursor: pointer;
     transition: all 0.1s ease-in;
