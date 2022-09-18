@@ -62,7 +62,7 @@ const StyledFilter = styled.div`
                 return 'invert(54%) sepia(62%) saturate(600%) hue-rotate(89deg) brightness(93%) contrast(91%) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 0.6em #17b852)'
             }
             else{
-                return 'invert(7%) sepia(89%) saturate(6780%) hue-rotate(347deg) brightness(93%) contrast(102%) drop-shadow(0 0 0.8px #c4bdbd) drop-shadow(0 0 4px #f31a3a)'
+                return 'invert(7%) sepia(89%) saturate(6780%) hue-rotate(347deg) brightness(93%) contrast(102%) drop-shadow(0 0 0.5px #c4bdbd) drop-shadow(0 0 4px #FF0000)'
             }
         } };
     }
@@ -78,7 +78,7 @@ const StyledFilter = styled.div`
                 return 'invert(54%) sepia(62%) saturate(600%) hue-rotate(89deg) brightness(93%) contrast(91%) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 0.3em #17b852)'
             }
             else{
-                return 'invert(7%) sepia(89%) saturate(6780%) hue-rotate(347deg) brightness(93%) contrast(102%) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 0.8em #ac011b)'
+                return 'invert(7%) sepia(89%) saturate(6780%) hue-rotate(347deg) brightness(93%) contrast(102%) drop-shadow(0 0 0.5px #e23f3f) drop-shadow(0 0 4px #FF0000)'
             }
         } };
 

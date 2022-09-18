@@ -5,13 +5,14 @@ import PageArrow from './PageArrow';
 import { keyframes } from 'styled-components';
 import { useState } from 'react';
 import usePaginationManager from './usePaginationManager';
+import useOnScreen from './CustomHooks/useOnScreen';
 const Thoughts = (props) => {
 	const [currentAnimation, setCurrentAnimation] = useState('')
 	const {currentPage, pageChanger, noMoreLeft, noMoreRight} = usePaginationManager()
 	const [leftArrowLimit, setleftArrowLimit] = useState(false)
 	const [rightArrowLimit, setrightArrowLimit] = useState(false)
   return (
-	<StyledThoughtsContainer>
+	<StyledThoughtsContainer ref={props.refInstance}>
 		<PageArrow arrowDirection={'90deg'} spaceDirection={`right: 0.4vh`} ArrowLimit={leftArrowLimit} ArrowLimitAfterAction={() => setleftArrowLimit(false)}
 		ArrowHandler={() => {
 			if(noMoreLeft){

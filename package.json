@@ -13,6 +13,7 @@
     "react-dom": "^18.0.0",
     "react-simple-animate": "^3.5.1",
     "styled-components": "^5.3.5",
+    "styled-react-modal": "^3.0.0",
     "typewriter-effect": "^2.19.0"
   },
   "devDependencies": {
