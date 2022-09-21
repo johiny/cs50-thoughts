@@ -2,30 +2,60 @@ import React from 'react'
 import { css } from 'styled-components'
 import styled from 'styled-components'
 import thumbIcon from '../media/thumbIcon.svg'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import validateField from './CustomHooks/validateFunctions'
 const NewThoughtForm = (props) => {
 const [selectedFeeling, setSelectedFeeling] = useState('')
+const [errorMessages, seterrorMessages] = useState({username: null, thought: null, feeling: null})
+const [dirtyFields, setDirtyFields] = useState({username: false, thought: false, feeling: false})
+useEffect(() => {
+    validateField('feeling', selectedFeeling, seterrorMessages)
+},[selectedFeeling])
+
   return (
     <StyledForm>
-        <input type='text' placeholder="Hey what's your name?"/>
-        <textarea placeholder="What's your thought?"/>
+        { errorMessages.username && dirtyFields.username ? <StyledErrorMessage>{errorMessages.username}</StyledErrorMessage> : null}
+        <input name='username' type='text' placeholder="Hey what's your name?"
+        onChange={(e) => validateField('username', e.target.value, seterrorMessages)}
+        onKeyUp={() => {
+            setDirtyFields(prev => ({...prev, username: true}))
+        }}/>
+
+        { errorMessages.thought && dirtyFields.thought ? <StyledErrorMessage>{errorMessages.thought}</StyledErrorMessage> : null}
+        <textarea name='thought' placeholder="What's your thought?"
+        onChange={(e) => validateField('thought', e.target.value, seterrorMessages)}
+        onKeyUp={() => {
+            setDirtyFields(prev => ({...prev, thought: true}))
+        }}/>
+
         <h5>Your thought is?</h5>
+        { errorMessages.feeling && dirtyFields.feeling ? <StyledErrorMessage>{errorMessages.feeling}</StyledErrorMessage> : null}
         <FeelingsContainer>
             <Like src={thumbIcon} selectedFeeling={selectedFeeling} onClick={() => {
                 setSelectedFeeling('positive')
                 props.setFeelingColor('#17b852')
+                setDirtyFields(prev => ({...prev, feeling: true}))
                 }}/>
             <DisLike src={thumbIcon} selectedFeeling={selectedFeeling} onClick={() => {
                 setSelectedFeeling('negative')
                 props.setFeelingColor('#ac011b')
+                setDirtyFields(prev => ({...prev, feeling: true}))
                 }}/>
         </FeelingsContainer>
-        <button type='button'>Share</button>
+        <button type='button' 
+        disabled={errorMessages.username || errorMessages.thought || errorMessages.feeling}>
+        Share</button>
     </StyledForm>
   )
 }
 
+const StyledErrorMessage = styled.span`
+    color: white;
+    font-size: 1.2vh;
+    text-align: center;
+`
 const neonBox = css`
+    transition: all ease-in-out 500ms;
     box-shadow:
     0 0 0.2em #fff,
     0 0 0.2em #fff,
@@ -60,7 +90,7 @@ const  StyledForm = styled.form`
         padding: 0.8vh;
         margin: 2vh;
         margin-top: 1vh;
-        margin-bottom: 1vh;
+        margin-bottom: 2vh;
         background: none;
         ::placeholder{
             text-align: center;
@@ -69,6 +99,7 @@ const  StyledForm = styled.form`
     textarea{
         color:white;
         margin: 2vh;
+        margin-top: 1vh;
         margin-bottom: 0;
         padding: 0.5vh;
         ${neonBox}
@@ -80,6 +111,14 @@ const  StyledForm = styled.form`
         min-height: 25vh;
     }
     button{
+        cursor: pointer;
+        :hover{
+           color: #e6dddd
+        }
+        :disabled{
+            cursor: default;
+            color: #cfcbcb;
+        }
         margin-top: auto;
         border-bottom-right-radius: 1vh;
         border-bottom-left-radius: 1vh;
