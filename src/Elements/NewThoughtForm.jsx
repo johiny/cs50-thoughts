@@ -97,6 +97,16 @@ const  StyledForm = styled.form`
         }
     }
     textarea{
+        ::-webkit-scrollbar{
+            width: 2px;
+        }
+        ::-webkit-scrollbar-track{
+            background: #0e0d0d
+        }
+        ::-webkit-scrollbar-thumb{
+            
+            background: #e6dddd;
+        }
         color:white;
         margin: 2vh;
         margin-top: 1vh;
