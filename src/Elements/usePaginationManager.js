@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useThoughtsProviderAndController} from './ThoughtsProviderAndController'
 const usePaginationManager = () => {
     const {thoughts} = useThoughtsProviderAndController()

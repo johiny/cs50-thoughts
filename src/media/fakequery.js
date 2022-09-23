@@ -1,4 +1,4 @@
-export const apidata = JSON.parse(`[
+const data = JSON.parse(`[
 	{
 		"id": 1,
 		"byUsername": "johiny",
@@ -271,3 +271,12 @@ export const apidata = JSON.parse(`[
 	"createdDate": "2022-08-05T19:25:05.707Z"
 }
 ]`)
+
+const fakeAxios = () => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(data)
+		}, 10000)
+	})
+}
+export default fakeAxios

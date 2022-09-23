@@ -3,16 +3,18 @@ import styled from 'styled-components'
 import Thought from './Thought';
 import PageArrow from './PageArrow';
 import { keyframes } from 'styled-components';
-import { useState } from 'react';
+import { useState} from 'react';
 import usePaginationManager from './usePaginationManager';
-import useOnScreen from './CustomHooks/useOnScreen';
+import { useThoughtsProviderAndController} from './ThoughtsProviderAndController'
+import DummyCard from './DummyCard';
 const Thoughts = (props) => {
+  const {apiCallIsLoading} = useThoughtsProviderAndController()
 	const [currentAnimation, setCurrentAnimation] = useState('')
 	const {currentPage, pageChanger, noMoreLeft, noMoreRight} = usePaginationManager()
 	const [leftArrowLimit, setleftArrowLimit] = useState(false)
 	const [rightArrowLimit, setrightArrowLimit] = useState(false)
   return (
-	<StyledThoughtsContainer ref={props.refInstance}>
+	<StyledThoughtsContainer>
 		<PageArrow arrowDirection={'90deg'} spaceDirection={`right: 0.4vh`} ArrowLimit={leftArrowLimit} ArrowLimitAfterAction={() => setleftArrowLimit(false)}
 		ArrowHandler={() => {
 			if(noMoreLeft){
@@ -35,9 +37,10 @@ const Thoughts = (props) => {
 			}
 		}}>
       {/* thoughts iteration */}
-			{currentPage.map(thought => <Thought
-			{...thought}
-			/>)}
+			{apiCallIsLoading ?
+      [...Array(12)].map(dummyThought => <DummyCard/>) :
+      currentPage.map(thought => <Thought {...thought}/>)
+      }
 		</StyledThoughts>
 		<PageArrow arrowDirection={'270deg'} spaceDirection={`left: 0.4vh`} ArrowLimit={rightArrowLimit} ArrowLimitAfterAction={() => setrightArrowLimit(false)}
 		ArrowHandler={() => {
@@ -57,6 +60,7 @@ const StyledThoughts = styled.div`
     grid-auto-rows: 5vh;
     gap: 3.5vh;
     margin: 2vh 0;
+    width: 100%;
 	-webkit-animation: ${props => props.currentAnimation} ${props => props.currentAnimation === goOutLeft || goOutRight ? '0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060)' : '0.10s cubic-bezier(0.230, 1.000, 0.320, 1.000)'} both;
 	        animation: ${props => props.currentAnimation} ${props => props.currentAnimation === goOutLeft || goOutRight ? '0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060)' : '0.10s cubic-bezier(0.230, 1.000, 0.320, 1.000)'} both;
 `

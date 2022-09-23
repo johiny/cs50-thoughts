@@ -1,6 +1,6 @@
 import { useState, useEffect} from "react";
 import { createContext, useContext} from "react";
-import {apidata} from '../media/fakequery'
+import fakeAxios from "../media/fakequery";
 
 const ThoughtsContext = createContext()
 
@@ -11,7 +11,13 @@ const ThoughtsProviderAndController = ({children}) => {
     useEffect(() => {
         const axiosQuery = `http://localhost:3000/api/v1/thoughts?${ filters.feeling ? `feeling=${filters.feeling}&` : '' }${`createDate=${filters.createDate}&`}${`upVotes=${filters.upVotes}&`}${`DownVotes=${filters.downVotes}`}`
         console.log(axiosQuery)
-        setThoughts(apidata)
+        const apiCall = async () => {
+            setApiCallIsLoading(true)
+            const apidata = await fakeAxios()
+            setThoughts(apidata)
+            setApiCallIsLoading(false)
+        }
+        apiCall()
     },[filters])
     return(
         <ThoughtsContext.Provider value={{thoughts, filters, setFilters, setApiCallIsLoading, apiCallIsLoading, setThoughts}}>
