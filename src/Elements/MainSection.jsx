@@ -2,7 +2,7 @@ import React from 'react'
 import Thoughts from './Thoughts';
 import Filters from './Filters';
 import {ThoughtsProviderAndController} from './ThoughtsProviderAndController'
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import AddThought from './AddThought';
 import NewThoughtModal from './NewThoughtModal';

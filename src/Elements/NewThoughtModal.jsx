@@ -5,22 +5,28 @@ import closeIcon from '../media/closeicon.svg'
 import { css, keyframes } from 'styled-components'
 import NewThoughtForm from './NewThoughtForm'
 import { useState } from 'react'
+import ModalLoader from './ModalLoader'
 const NewThoughtModal = ({isOpen, setIsOpen}) => {
     function toggleModal(e) {
         setIsOpen(!isOpen)
       }
-const [feelingColor, setFeelingColor] = useState('#f7f7f7')     
+const [feelingColor, setFeelingColor] = useState('#f7f7f7')
+const [newThoughtLoading, setNewThoughtLoading] = useState(false) 
   return (
     <StyledContainerModal
     isOpen={isOpen}
     onBackgroundClick={toggleModal}
     onEscapeKeydown={toggleModal}>
         <StyledModal feelingColor={feelingColor}>
+          { newThoughtLoading ? <ModalLoader/> : null }
             <img src={closeIcon} id='closeCross' onClick={() => {
                 setIsOpen(false)
                 setFeelingColor('#f7f7f7')
                 }}/>
-            <NewThoughtForm setFeelingColor={setFeelingColor}/>
+            <NewThoughtForm 
+            setFeelingColor={setFeelingColor} 
+            setNewThoughtLoading={setNewThoughtLoading}
+            setIsOpen={setIsOpen}/>
         </StyledModal>
     </StyledContainerModal>
   )

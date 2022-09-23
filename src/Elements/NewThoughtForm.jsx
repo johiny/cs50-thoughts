@@ -4,16 +4,54 @@ import styled from 'styled-components'
 import thumbIcon from '../media/thumbIcon.svg'
 import { useState, useEffect } from 'react'
 import validateField from './CustomHooks/validateFunctions'
+import { toast } from 'react-toastify';
+import fakeAxiosPost from '../media/fakePost'
+import { useThoughtsProviderAndController } from './ThoughtsProviderAndController'
 const NewThoughtForm = (props) => {
 const [selectedFeeling, setSelectedFeeling] = useState('')
 const [errorMessages, seterrorMessages] = useState({username: null, thought: null, feeling: null})
 const [dirtyFields, setDirtyFields] = useState({username: false, thought: false, feeling: false})
+const {setThoughts} = useThoughtsProviderAndController() 
 useEffect(() => {
     validateField('feeling', selectedFeeling, seterrorMessages)
 },[selectedFeeling])
-
+    const newThoughtSubmit = (e) => {
+        let thought = {
+            byUsername: e.target.elements.username.value,
+             content: e.target.elements.thought.value,
+             feeling: selectedFeeling,
+             upVotes: 1,
+	         DownVotes: 1,
+            }
+        console.log(thought)    
+        e.preventDefault()
+        props.setNewThoughtLoading(true)
+        toast.promise(fakeAxiosPost(), {
+            pending: {
+                render(){
+                  return `Wait a little...`
+                }
+            },
+            success: {
+                render({data}){
+                    console.log('success se creo el thought!')
+                    props.setIsOpen(false)
+                    props.setNewThoughtLoading(false)
+                    setThoughts(prev => ([thought, ...prev]))
+                    props.setFeelingColor('#f7f7f7')
+                  return `${data}`
+                }
+            },
+            error: {
+                render({data}){
+                    props.setNewThoughtLoading(false)
+                    return `${data} try again!`
+                    }
+            }
+        })
+    }
   return (
-    <StyledForm>
+    <StyledForm onSubmit={(e) => newThoughtSubmit(e)}>
         { errorMessages.username && dirtyFields.username ? <StyledErrorMessage>{errorMessages.username}</StyledErrorMessage> : null}
         <input name='username' type='text' placeholder="Hey what's your name?"
         onChange={(e) => validateField('username', e.target.value, seterrorMessages)}
@@ -42,7 +80,7 @@ useEffect(() => {
                 setDirtyFields(prev => ({...prev, feeling: true}))
                 }}/>
         </FeelingsContainer>
-        <button type='button' 
+        <button type='submit' 
         disabled={errorMessages.username || errorMessages.thought || errorMessages.feeling}>
         Share</button>
     </StyledForm>

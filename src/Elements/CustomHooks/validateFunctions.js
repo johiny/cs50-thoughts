@@ -11,7 +11,6 @@ const validateField = async (field, data, setFieldError) => {
         setFieldError(prev => ({...prev, [field] : null}))
     }
     catch(err){
-        console.log(err)
         setFieldError(prev => ({...prev, [field] : err?.errors[0] }))
     }
 }

@@ -1,10 +1,15 @@
-import { useState} from "react";
+import { useState, useEffect} from "react";
 import { useThoughtsProviderAndController} from './ThoughtsProviderAndController'
 const usePaginationManager = () => {
     const {thoughts} = useThoughtsProviderAndController()
     const MAXNumberOfThoughtsPerPage = 12
     const [startIndex, setStartIndex] = useState(0)
     let currentPage = thoughts.slice(startIndex, (startIndex + MAXNumberOfThoughtsPerPage > thoughts.length ? thoughts.length : (startIndex + MAXNumberOfThoughtsPerPage)))
+
+    useEffect(() => {
+        console.log(thoughts)
+        setStartIndex(0)
+    }, [thoughts])
 
     const pageChanger = (direction) => {
         if(direction === 'left' && startIndex >= 0){
