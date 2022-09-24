@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import prevBackground from  '../media/background_poster.jpg'
 import videoBackground from '../media/cs50_background.mp4'
 import { ModalProvider } from 'styled-react-modal'
 const AppContainer = (props) => {
   return (
     <ModalProvider>
       <StyledAppContainer>
-        <StyledBackground autoPlay muted loop onPlay={e => e.target.playbackRate = 0.5}>
+        <StyledBackground poster={prevBackground} autoPlay muted loop onPlay={e => e.target.playbackRate = 0.5}>
           <source src={ videoBackground } type="video/mp4"/>
         </StyledBackground>
         {props.children}
