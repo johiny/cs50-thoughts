@@ -7,3 +7,8 @@ export const randomFeeling = () => {
         return 'positive'
     }
 }
+
+export const randomDelay = () => {
+    let rng = Math.floor(Math.random() * 10 + 1)
+    return `${rng}s`
+}

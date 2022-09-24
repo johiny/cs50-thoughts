@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import LikeAndDislike from './LikeAndDislike'
+import { Textfit } from 'react-textfit'
 const Thought = (props) => {
   return (
     <StyledThought feeling={props.feeling}>
-        <p>{props.content}</p>
+        <Textfit className='textFit' min={1} max={16}>{props.content}</Textfit>
         <ThoughtFooter>
         <LikeAndDislike upVotes={props.upVotes} downVotes={props.DownVotes}/>
         <span>{props.byUsername}</span>
@@ -23,7 +24,6 @@ const StyledThought = styled.div`
   border: solid var(--card-color) 1px;
   border-radius: 11px;
   color: #F6FAF6;
-  font-size: 1em;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   grid-column: span 6;
@@ -32,7 +32,7 @@ const StyledThought = styled.div`
     0 0 0.2em #fff,
     0 0 0.2em #fff,
     0 0 0.2em #fff,
-    /* Green glow */
+    /* Color glow */
     0 0 0.6em var(--card-color),
     0 0 0.6em var(--card-color),
     0 0 0.6em var(--card-color),
@@ -48,13 +48,24 @@ const StyledThought = styled.div`
     grid-column: span 1;
     grid-row: span 5;
     }
-  >p{
+  /* >p{
     margin-top: auto;
     margin-bottom: auto;
     text-align: center;
     display : block; 
     overflow-wrap: break-word; 
     max-width : 100%;
+    margin-left: 1.5vh;
+    margin-right: 1.5vh;
+  } */
+  .textFit{
+    display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 2;
+      text-align: center;
+      margin: 1vh;
+      max-height: 80%;
   }
 `
 
