@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Modal from 'styled-react-modal'
-import closeIcon from '../media/closeicon.svg'
+import closeIcon from '../media/closeIcon.svg'
 import { css, keyframes } from 'styled-components'
 import NewThoughtForm from './NewThoughtForm'
 import { useState } from 'react'
