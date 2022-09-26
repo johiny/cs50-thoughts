@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import LikeAndDislike from './LikeAndDislike'
 import { Textfit } from 'react-textfit'
+import ModalLoader from './ModalLoader'
 const Thought = (props) => {
+  const [isLoading, setIsLoading] = useState(false)
   return (
     <StyledThought feeling={props.feeling}>
+    {isLoading ? <ModalLoader/> : null}
         <Textfit className='textFit' min={1} max={16}>{props.content}</Textfit>
         <ThoughtFooter>
-        <LikeAndDislike upVotes={props.upVotes} downVotes={props.DownVotes}/>
+        <LikeAndDislike upVotes={props.upVotes} downVotes={props.DownVotes} setIsLoading={setIsLoading}/>
         <span>{props.byUsername}</span>
         </ThoughtFooter>
     </StyledThought>

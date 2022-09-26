@@ -4,36 +4,52 @@ import Thought from './Thought';
 import PageArrow from './PageArrow';
 import { keyframes } from 'styled-components';
 import { useState} from 'react';
-import usePaginationManager from './usePaginationManager';
 import { useThoughtsProviderAndController} from './ThoughtsProviderAndController'
 import DummyCard from './DummyCard';
 const Thoughts = (props) => {
-  const {apiCallIsLoading} = useThoughtsProviderAndController()
+  const {apiCallIsLoading, currentPage, frontPageChanger,noMoreLeft, noMoreRight, checkForMore, newThoghtsComing, setNewThoughtsComing} = useThoughtsProviderAndController()
 	const [currentAnimation, setCurrentAnimation] = useState('')
-	const {currentPage, pageChanger, noMoreLeft, noMoreRight} = usePaginationManager()
 	const [leftArrowLimit, setleftArrowLimit] = useState(false)
 	const [rightArrowLimit, setrightArrowLimit] = useState(false)
   return (
 	<StyledThoughtsContainer>
 		<PageArrow arrowDirection={'90deg'} spaceDirection={`right: 0.4vh`} ArrowLimit={leftArrowLimit} ArrowLimitAfterAction={() => setleftArrowLimit(false)}
-		ArrowHandler={() => {
+		ArrowHandler={async () => {
 			if(noMoreLeft){
-				setleftArrowLimit(true)
-				return
+        if( await checkForMore('left')){
+          setCurrentAnimation(goOutRight)
+        }
+        else{
+          setleftArrowLimit(true)
+          return
+        }
 			}
-			setCurrentAnimation(goOutRight)}}
-			onAnimationEnd={() => {
-				setleftArrowLimit(false)
-			}}/>
+      else{
+        setCurrentAnimation(goOutRight)
+      }
+    }}
+		/>
 
 		<StyledThoughts currentAnimation={currentAnimation} onAnimationEnd={() => {
 			if(currentAnimation === goOutRight){
 				setCurrentAnimation(goInLeft)
-				pageChanger('left')
+        if(newThoghtsComing){
+          frontPageChanger('left', true)
+          setNewThoughtsComing(false)
+        }
+        else{
+          frontPageChanger('left', false)
+        }
 			}
 			else if(currentAnimation === goOutLeft){
 				setCurrentAnimation(goInRight)
-				pageChanger('right')
+        if(newThoghtsComing){
+          frontPageChanger('right', true)
+          setNewThoughtsComing(false)  
+        }
+        else{
+          frontPageChanger('right', false)  
+        }
 			}
 		}}>
       {/* thoughts iteration */}
@@ -43,12 +59,21 @@ const Thoughts = (props) => {
       }
 		</StyledThoughts>
 		<PageArrow arrowDirection={'270deg'} spaceDirection={`left: 0.4vh`} ArrowLimit={rightArrowLimit} ArrowLimitAfterAction={() => setrightArrowLimit(false)}
-		ArrowHandler={() => {
+		ArrowHandler={async () => {
 			if(noMoreRight){
-				setrightArrowLimit(true)
-				return
+        if(await checkForMore('right')){
+          setCurrentAnimation(goOutLeft)
+        }
+        else{
+          setrightArrowLimit(true)
+          return
+        }
 			}
-			setCurrentAnimation(goOutLeft)}}/>
+      else{
+        setCurrentAnimation(goOutLeft)
+      }
+    }}
+    />
 
 	</StyledThoughtsContainer>
   )

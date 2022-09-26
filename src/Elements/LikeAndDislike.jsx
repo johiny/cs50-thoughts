@@ -1,14 +1,15 @@
 import React from 'react';
-import { keyframes } from 'styled-components';
 import styled from 'styled-components';
 import thumbIcon from '../media/thumbIcon.svg'
+import useLikeAndDislikeController from './CustomHooks/useLikeAndDislikeController';
 const LikeAndDislike = (props) => {
+    const {likeAndDislikeHandler,  likesAndDislikes} = useLikeAndDislikeController(props)
   return (
     <LikeAndDislikeContainer>
-        <LikesCounter>{props.upVotes}</LikesCounter>
-        <Like src={thumbIcon}/>
-        <DislikesCounter>{props.downVotes}</DislikesCounter>
-        <DisLike src={thumbIcon}/>
+        <LikesCounter>{likesAndDislikes.likes}</LikesCounter>
+        <Like src={thumbIcon} onClick={() => likeAndDislikeHandler('likes')}/>
+        <DislikesCounter >{likesAndDislikes.dislikes}</DislikesCounter>
+        <DisLike src={thumbIcon} onClick={() => likeAndDislikeHandler('dislikes')}/>
     </LikeAndDislikeContainer>
   )
 }

@@ -1,35 +1,40 @@
 import { useState, useEffect} from "react";
-import { useThoughtsProviderAndController} from './ThoughtsProviderAndController'
-const usePaginationManager = () => {
-    const {thoughts} = useThoughtsProviderAndController()
+const usePaginationManager = ({thoughts, startIndex, setStartIndex}) => {
     const MAXNumberOfThoughtsPerPage = 12
-    const [startIndex, setStartIndex] = useState(0)
     let currentPage = thoughts.slice(startIndex, (startIndex + MAXNumberOfThoughtsPerPage > thoughts.length ? thoughts.length : (startIndex + MAXNumberOfThoughtsPerPage)))
 
-    useEffect(() => {
-        console.log(thoughts)
-        setStartIndex(0)
-    }, [thoughts])
-
-    const pageChanger = (direction) => {
+    const noMoreLeft = startIndex === 0
+    const noMoreRight = startIndex + MAXNumberOfThoughtsPerPage >= thoughts.length
+    const frontPageChanger = (direction, newThoughts) => {
         if(direction === 'left' && startIndex >= 0){
             if((startIndex - MAXNumberOfThoughtsPerPage) < 0){
-                return
+                return false
             }
-            setStartIndex(startIndex - MAXNumberOfThoughtsPerPage)
+            if(newThoughts){
+                setStartIndex(108)
+            }
+            else{
+                setStartIndex(startIndex - MAXNumberOfThoughtsPerPage)
+            }
         }
         else if(direction === 'right' && startIndex <= (thoughts.length)){
             if((startIndex + MAXNumberOfThoughtsPerPage) >= thoughts.length){
-                return
+                return false
             }
-            setStartIndex(startIndex + MAXNumberOfThoughtsPerPage)
+            if(newThoughts){
+                setStartIndex(0)
+            }
+            else{
+                setStartIndex(startIndex + MAXNumberOfThoughtsPerPage)
+            }
         }
 
     }
+    useEffect(() => {
+        console.log(startIndex, `-`, startIndex + MAXNumberOfThoughtsPerPage)
+    }, [startIndex])
     
-    const noMoreLeft = startIndex === 0
-    const noMoreRight = startIndex + MAXNumberOfThoughtsPerPage >= thoughts.length
-    return {currentPage, pageChanger, noMoreLeft, noMoreRight}
+    return {currentPage, frontPageChanger, noMoreLeft, noMoreRight}
 }
 
 export default usePaginationManager

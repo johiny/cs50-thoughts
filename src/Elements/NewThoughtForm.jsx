@@ -8,22 +8,21 @@ import { toast } from 'react-toastify';
 import fakeAxiosPost from '../media/fakePost'
 import { useThoughtsProviderAndController } from './ThoughtsProviderAndController'
 const NewThoughtForm = (props) => {
-const [selectedFeeling, setSelectedFeeling] = useState('')
-const [errorMessages, seterrorMessages] = useState({username: null, thought: null, feeling: null})
-const [dirtyFields, setDirtyFields] = useState({username: false, thought: false, feeling: false})
-const {setThoughts} = useThoughtsProviderAndController() 
-useEffect(() => {
-    validateField('feeling', selectedFeeling, seterrorMessages)
-},[selectedFeeling])
+    const [selectedFeeling, setSelectedFeeling] = useState('')
+    const [errorMessages, seterrorMessages] = useState({username: null, thought: null, feeling: null})
+    const [dirtyFields, setDirtyFields] = useState({username: false, thought: false, feeling: false})
+    const {setThoughts} = useThoughtsProviderAndController() 
+    useEffect(() => {
+        validateField('feeling', selectedFeeling, seterrorMessages)
+    },[selectedFeeling])
     const newThoughtSubmit = (e) => {
-        let thought = {
+    let thought = {
             byUsername: e.target.elements.username.value,
              content: e.target.elements.thought.value,
              feeling: selectedFeeling,
              upVotes: 1,
 	         DownVotes: 1,
-            }
-        console.log(thought)    
+        } 
         e.preventDefault()
         props.setNewThoughtLoading(true)
         toast.promise(fakeAxiosPost(), {
