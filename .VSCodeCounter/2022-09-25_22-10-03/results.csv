@@ -1,0 +1,41 @@
+"filename", "language", "JavaScript", "XML", "JavaScript React", "CSS", "JSON", "HTML", "Properties", "comment", "blank", "total"
+"c:\Users\johin\Documents\cs-thoughts\.env", "Properties", 0, 0, 0, 0, 0, 0, 1, 0, 0, 1
+"c:\Users\johin\Documents\cs-thoughts\index.html", "HTML", 0, 0, 0, 0, 0, 13, 0, 0, 1, 14
+"c:\Users\johin\Documents\cs-thoughts\package.json", "JSON", 0, 0, 0, 0, 29, 0, 0, 0, 1, 30
+"c:\Users\johin\Documents\cs-thoughts\src\App.jsx", "JavaScript React", 0, 0, 28, 0, 0, 0, 0, 0, 3, 31
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\AddThought.jsx", "JavaScript React", 0, 0, 73, 0, 0, 0, 0, 0, 1, 74
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\AppContainer.jsx", "JavaScript React", 0, 0, 33, 0, 0, 0, 0, 0, 2, 35
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\CustomHooks\useLikeAndDislikeController.js", "JavaScript", 33, 0, 0, 0, 0, 0, 0, 0, 2, 35
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\CustomHooks\useOnScreen.js", "JavaScript", 19, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\CustomHooks\validateFunctions.js", "JavaScript", 16, 0, 0, 0, 0, 0, 0, 1, 2, 19
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\DummyCard.jsx", "JavaScript React", 0, 0, 89, 0, 0, 0, 0, 0, 4, 93
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\FeelingFilter.jsx", "JavaScript React", 0, 0, 112, 0, 0, 0, 0, 0, 1, 113
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\Filters.jsx", "JavaScript React", 0, 0, 71, 0, 0, 0, 0, 0, 3, 74
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\HomeCover.jsx", "JavaScript React", 0, 0, 39, 0, 0, 0, 0, 0, 3, 42
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\InsertThought.jsx", "JavaScript React", 0, 0, 101, 0, 0, 0, 0, 0, 1, 102
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\LikeAndDislike.jsx", "JavaScript React", 0, 0, 66, 0, 0, 0, 0, 0, 2, 68
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\Logo.jsx", "JavaScript React", 0, 0, 34, 0, 0, 0, 0, 0, 2, 36
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\MainSection.jsx", "JavaScript React", 0, 0, 28, 0, 0, 0, 0, 0, 2, 30
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\ModalLoader.jsx", "JavaScript React", 0, 0, 57, 0, 0, 0, 0, 0, 1, 58
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\NewThoughtForm.jsx", "JavaScript React", 0, 0, 205, 0, 0, 0, 0, 0, 6, 211
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\NewThoughtModal.jsx", "JavaScript React", 0, 0, 172, 0, 0, 0, 0, 0, 1, 173
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\PageArrow.jsx", "JavaScript React", 0, 0, 54, 0, 0, 0, 0, 0, 1, 55
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\Thought.jsx", "JavaScript React", 0, 0, 82, 0, 0, 0, 0, 0, 3, 85
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\Thoughts.jsx", "JavaScript React", 0, 0, 187, 0, 0, 0, 0, 1, 6, 194
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\ThoughtsProviderAndController.jsx", "JavaScript React", 0, 0, 96, 0, 0, 0, 0, 2, 3, 101
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\randomFunctions.js", "JavaScript", 13, 0, 0, 0, 0, 0, 0, 0, 1, 14
+"c:\Users\johin\Documents\cs-thoughts\src\Elements\usePaginationManager.js", "JavaScript", 38, 0, 0, 0, 0, 0, 0, 0, 4, 42
+"c:\Users\johin\Documents\cs-thoughts\src\favicon.svg", "XML", 0, 15, 0, 0, 0, 0, 0, 0, 1, 16
+"c:\Users\johin\Documents\cs-thoughts\src\index.css", "CSS", 0, 0, 0, 46, 0, 0, 0, 0, 2, 48
+"c:\Users\johin\Documents\cs-thoughts\src\main.jsx", "JavaScript React", 0, 0, 8, 0, 0, 0, 0, 0, 2, 10
+"c:\Users\johin\Documents\cs-thoughts\src\media\AllIcon.svg", "XML", 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
+"c:\Users\johin\Documents\cs-thoughts\src\media\NegativeIcon.svg", "XML", 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
+"c:\Users\johin\Documents\cs-thoughts\src\media\PositiveIcon.svg", "XML", 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
+"c:\Users\johin\Documents\cs-thoughts\src\media\addIcon.svg", "XML", 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
+"c:\Users\johin\Documents\cs-thoughts\src\media\closeIcon.svg", "XML", 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
+"c:\Users\johin\Documents\cs-thoughts\src\media\fakePost.jsx", "JavaScript React", 0, 0, 15, 0, 0, 0, 0, 0, 1, 16
+"c:\Users\johin\Documents\cs-thoughts\src\media\fakequery.js", "JavaScript", 280, 0, 0, 0, 0, 0, 0, 0, 2, 282
+"c:\Users\johin\Documents\cs-thoughts\src\media\filter-arrow.svg", "XML", 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
+"c:\Users\johin\Documents\cs-thoughts\src\media\thumbIcon.svg", "XML", 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
+"c:\Users\johin\Documents\cs-thoughts\vite.config.js", "JavaScript", 5, 0, 0, 0, 0, 0, 0, 1, 2, 8
+"Total", "-", 404, 36, 1550, 46, 29, 13, 1, 5, 75, 2159

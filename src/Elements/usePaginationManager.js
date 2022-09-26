@@ -1,17 +1,18 @@
 import { useState, useEffect} from "react";
-const usePaginationManager = ({thoughts, startIndex, setStartIndex}) => {
+const usePaginationManager = ({thoughts, startIndex, setStartIndex, newThoghtsComing, setNewThoughtsComing}) => {
     const MAXNumberOfThoughtsPerPage = 12
     let currentPage = thoughts.slice(startIndex, (startIndex + MAXNumberOfThoughtsPerPage > thoughts.length ? thoughts.length : (startIndex + MAXNumberOfThoughtsPerPage)))
 
     const noMoreLeft = startIndex === 0
     const noMoreRight = startIndex + MAXNumberOfThoughtsPerPage >= thoughts.length
-    const frontPageChanger = (direction, newThoughts) => {
+    const frontPageChanger = (direction) => {
         if(direction === 'left' && startIndex >= 0){
             if((startIndex - MAXNumberOfThoughtsPerPage) < 0){
                 return false
             }
-            if(newThoughts){
+            if(newThoghtsComing){
                 setStartIndex(108)
+                setNewThoughtsComing(false)
             }
             else{
                 setStartIndex(startIndex - MAXNumberOfThoughtsPerPage)
@@ -21,8 +22,9 @@ const usePaginationManager = ({thoughts, startIndex, setStartIndex}) => {
             if((startIndex + MAXNumberOfThoughtsPerPage) >= thoughts.length){
                 return false
             }
-            if(newThoughts){
+            if(newThoghtsComing){
                 setStartIndex(0)
+                setNewThoughtsComing(false)
             }
             else{
                 setStartIndex(startIndex + MAXNumberOfThoughtsPerPage)

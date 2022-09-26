@@ -7,7 +7,7 @@ import { useState} from 'react';
 import { useThoughtsProviderAndController} from './ThoughtsProviderAndController'
 import DummyCard from './DummyCard';
 const Thoughts = (props) => {
-  const {apiCallIsLoading, currentPage, frontPageChanger,noMoreLeft, noMoreRight, checkForMore, newThoghtsComing, setNewThoughtsComing} = useThoughtsProviderAndController()
+  const {apiCallIsLoading, currentPage, frontPageChanger,noMoreLeft, noMoreRight, checkForMore} = useThoughtsProviderAndController()
 	const [currentAnimation, setCurrentAnimation] = useState('')
 	const [leftArrowLimit, setleftArrowLimit] = useState(false)
 	const [rightArrowLimit, setrightArrowLimit] = useState(false)
@@ -33,23 +33,11 @@ const Thoughts = (props) => {
 		<StyledThoughts currentAnimation={currentAnimation} onAnimationEnd={() => {
 			if(currentAnimation === goOutRight){
 				setCurrentAnimation(goInLeft)
-        if(newThoghtsComing){
           frontPageChanger('left', true)
-          setNewThoughtsComing(false)
-        }
-        else{
-          frontPageChanger('left', false)
-        }
 			}
 			else if(currentAnimation === goOutLeft){
 				setCurrentAnimation(goInRight)
-        if(newThoghtsComing){
           frontPageChanger('right', true)
-          setNewThoughtsComing(false)  
-        }
-        else{
-          frontPageChanger('right', false)  
-        }
 			}
 		}}>
       {/* thoughts iteration */}
