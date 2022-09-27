@@ -20,12 +20,11 @@ const ThoughtsProviderAndController = ({children}) => {
     const axiosQuery = `thoughts?${ filters.feeling ? `feeling=${filters.feeling}&` : '' }${filters.createdDate ? `createdDate=${filters.createdDate}&` : ''}${ filters.upVotes ? `upVotes=${filters.upVotes}&` : ''}${filters.downVotes ? `DownVotes=${filters.downVotes}&`: ''}`
     //make first query to api
     useEffect(() => {
-        console.log(axiosQuery)
         const apiCall = async () => {
             setApiCallIsLoading(true)
             try{
-                const apidata = await fakeAxios()
-                setThoughts(apidata)
+                const apidata = await axios.get(`${apiEndpoint}${axiosQuery}`)
+                setThoughts(apidata.data)
                 setApiCallIsLoading(false)
             }
             catch(err){

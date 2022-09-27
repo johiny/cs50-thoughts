@@ -57,8 +57,8 @@ const StyledAddThought = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1vh;
-
+    position: relative;
+    top: -1vh;
     img{
         margin-left: 5vh;
         width: 9vh;
