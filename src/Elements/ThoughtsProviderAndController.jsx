@@ -29,6 +29,7 @@ const ThoughtsProviderAndController = ({children}) => {
                 setApiCallIsLoading(false)
             }
             catch(err){
+                console.log(err)
                 setThoughts([])
             }
         }
