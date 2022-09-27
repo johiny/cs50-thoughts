@@ -1,13 +1,15 @@
 import { useState } from "react";
 import fakeAxiosPost from '../../media/fakePost'
 import { toast } from "react-toastify";
-const useLikeAndDislikeController = (props) => {
+import axios from 'axios';
 
+const useLikeAndDislikeController = (props) => {
     const [likesAndDislikes, setLikesAndDislikes] = useState({likes: props.upVotes, dislikes: props.downVotes})
-    const likeAndDislikeHandler = (feeling) => {
+    const api = import.meta.env.VITE_API
+    const likeAndDislikeHandler = (feeling, id) => {
         const endpoint = feeling === 'likes' ? 'upVote' : 'DownVote'
         props.setIsLoading(true)
-        toast.promise(fakeAxiosPost(),{
+        toast.promise(axios.patch(`${api}thoughts/${id}/${endpoint}`),{
             pending: {
                 render(){
                   return `Wait a little...`
@@ -15,16 +17,17 @@ const useLikeAndDislikeController = (props) => {
             },
             success: {
                 render({data}){
-                    console.log(likesAndDislikes)
+                    console.log(data)
                     setLikesAndDislikes(prev =>({...prev, [feeling]: prev[feeling] + 1}))
                     props.setIsLoading(false)
-                  return `${data}`
+                  return `${data.data.message}`
                 }
             },
             error: {
                 render({data}){
+                    console.log(data)
                     props.setIsLoading(false)
-                    return `${data} try again!`
+                    return `${data.response.data.message}`
                     }
             }
         })

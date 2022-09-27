@@ -7,9 +7,9 @@ const LikeAndDislike = (props) => {
   return (
     <LikeAndDislikeContainer>
         <LikesCounter>{likesAndDislikes.likes}</LikesCounter>
-        <Like src={thumbIcon} onClick={() => likeAndDislikeHandler('likes')}/>
+        <Like src={thumbIcon} onClick={() => likeAndDislikeHandler('likes', props.id)}/>
         <DislikesCounter >{likesAndDislikes.dislikes}</DislikesCounter>
-        <DisLike src={thumbIcon} onClick={() => likeAndDislikeHandler('dislikes')}/>
+        <DisLike src={thumbIcon} onClick={() => likeAndDislikeHandler('dislikes', props.id)}/>
     </LikeAndDislikeContainer>
   )
 }

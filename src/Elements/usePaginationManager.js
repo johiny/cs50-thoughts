@@ -32,9 +32,6 @@ const usePaginationManager = ({thoughts, startIndex, setStartIndex, newThoghtsCo
         }
 
     }
-    useEffect(() => {
-        console.log(startIndex, `-`, startIndex + MAXNumberOfThoughtsPerPage)
-    }, [startIndex])
     
     return {currentPage, frontPageChanger, noMoreLeft, noMoreRight}
 }

@@ -6,6 +6,7 @@ import { keyframes } from 'styled-components';
 import { useState} from 'react';
 import { useThoughtsProviderAndController} from './ThoughtsProviderAndController'
 import DummyCard from './DummyCard';
+import { nanoid } from 'nanoid'
 const Thoughts = (props) => {
   const {apiCallIsLoading, currentPage, frontPageChanger,noMoreLeft, noMoreRight, checkForMore} = useThoughtsProviderAndController()
 	const [currentAnimation, setCurrentAnimation] = useState('')
@@ -42,8 +43,8 @@ const Thoughts = (props) => {
 		}}>
       {/* thoughts iteration */}
 			{apiCallIsLoading ?
-      [...Array(12)].map(dummyThought => <DummyCard/>) :
-      currentPage.map(thought => <Thought {...thought}/>)
+      [...Array(12)].map(dummyThought => <DummyCard key={nanoid()}/>) :
+      currentPage.map(thought => <Thought {...thought} key={thought.id}/>)
       }
 		</StyledThoughts>
 		<PageArrow arrowDirection={'270deg'} spaceDirection={`left: 0.4vh`} ArrowLimit={rightArrowLimit} ArrowLimitAfterAction={() => setrightArrowLimit(false)}

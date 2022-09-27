@@ -5,27 +5,28 @@ import thumbIcon from '../media/thumbIcon.svg'
 import { useState, useEffect } from 'react'
 import validateField from './CustomHooks/validateFunctions'
 import { toast } from 'react-toastify';
+import axios from 'axios'
 import fakeAxiosPost from '../media/fakePost'
 import { useThoughtsProviderAndController } from './ThoughtsProviderAndController'
 const NewThoughtForm = (props) => {
     const [selectedFeeling, setSelectedFeeling] = useState('')
     const [errorMessages, seterrorMessages] = useState({username: null, thought: null, feeling: null})
     const [dirtyFields, setDirtyFields] = useState({username: false, thought: false, feeling: false})
-    const {setThoughts} = useThoughtsProviderAndController() 
+    const {setThoughts} = useThoughtsProviderAndController()
+    const api = import.meta.env.VITE_API 
     useEffect(() => {
         validateField('feeling', selectedFeeling, seterrorMessages)
     },[selectedFeeling])
+
     const newThoughtSubmit = (e) => {
+    e.preventDefault()
     let thought = {
             byUsername: e.target.elements.username.value,
              content: e.target.elements.thought.value,
-             feeling: selectedFeeling,
-             upVotes: 1,
-	         DownVotes: 1,
+             feeling: selectedFeeling
         } 
-        e.preventDefault()
         props.setNewThoughtLoading(true)
-        toast.promise(fakeAxiosPost(), {
+        toast.promise(axios.post(`${api}thoughts`, thought), {
             pending: {
                 render(){
                   return `Wait a little...`
@@ -33,18 +34,17 @@ const NewThoughtForm = (props) => {
             },
             success: {
                 render({data}){
-                    console.log('success se creo el thought!')
                     props.setIsOpen(false)
                     props.setNewThoughtLoading(false)
-                    setThoughts(prev => ([thought, ...prev]))
+                    setThoughts(prev => ([data.data.newThought, ...prev]))
                     props.setFeelingColor('#f7f7f7')
-                  return `${data}`
+                  return `${data.data.message}`
                 }
             },
             error: {
                 render({data}){
                     props.setNewThoughtLoading(false)
-                    return `${data} try again!`
+                    return `${data.response.data.message} try again!`
                     }
             }
         })

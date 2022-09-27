@@ -10,7 +10,7 @@ const Thought = (props) => {
     {isLoading ? <ModalLoader/> : null}
         <Textfit className='textFit' min={1} max={16}>{props.content}</Textfit>
         <ThoughtFooter>
-        <LikeAndDislike upVotes={props.upVotes} downVotes={props.DownVotes} setIsLoading={setIsLoading}/>
+        <LikeAndDislike upVotes={props.upVotes} downVotes={props.DownVotes} id={props.id} setIsLoading={setIsLoading}/>
         <span>{props.byUsername}</span>
         </ThoughtFooter>
     </StyledThought>

@@ -18,6 +18,7 @@ const ThoughtsProviderAndController = ({children}) => {
     //make first query to api
     const axiosQuery = `thoughts?${ filters.feeling ? `feeling=${filters.feeling}&` : '' }${`createdDate=${filters.createDate}&`}${`upVotes=${filters.upVotes}&`}${`DownVotes=${filters.downVotes}`}`
     useEffect(() => {
+        console.log(axiosQuery)
         const apiCall = async () => {
             setApiCallIsLoading(true)
             try{
@@ -31,11 +32,7 @@ const ThoughtsProviderAndController = ({children}) => {
         }
         apiCall()
     },[filters])
-    useEffect(() =>{
-        console.log(skip)
-        console.log(limits)
-        console.log(thoughts)
-    },[skip, limits, thoughts])
+
     //see if there is more thought
     const checkForMore = async (direction) => {
         if(direction === 'right' && limits.right != true){
