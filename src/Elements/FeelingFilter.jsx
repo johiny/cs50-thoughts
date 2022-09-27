@@ -7,28 +7,40 @@ import { useState } from 'react'
 import { keyframes } from 'styled-components'
 import { useThoughtsProviderAndController} from './ThoughtsProviderAndController'
 const FeelingFilter = () => {
-    const {setFilters} = useThoughtsProviderAndController()
-    const [currentFeelingIcon, setCurrentFeelingicon] = useState(allIcon)
+    const {setFilters, filters} = useThoughtsProviderAndController()
+    const startingFilterIcon = () => {
+        switch(filters.feeling){
+            case null:
+                return allIcon
+            case 'postive':
+                return positiveIcon
+            case 'negative':
+                return negativeIcon
+        }
+    }
+    const [currentFeelingIcon, setCurrentFeelingicon] = useState(startingFilterIcon())
     const [FilterChangingStatus, setFilterChangingStatus] = useState('off')
     const filterChangerHandler = () => {
         if(FilterChangingStatus === 'fadeIn'){
             setFilterChangingStatus('off')
             return
         }
-        if(currentFeelingIcon === allIcon){
-            setCurrentFeelingicon(positiveIcon)
-            setFilterChangingStatus('fadeIn')
-            setFilters(prev => ({...prev, feeling: 'positive'}))
-        }
-        else if (currentFeelingIcon === positiveIcon){
-            setCurrentFeelingicon(negativeIcon)
-            setFilterChangingStatus('fadeIn')
-            setFilters(prev => ({...prev, feeling: 'negative'}))
-        }
-        else if (currentFeelingIcon === negativeIcon){
-            setCurrentFeelingicon(allIcon)
-            setFilterChangingStatus('fadeIn')
-            setFilters(prev => ({...prev, feeling: null}))
+        switch(filters.feeling){
+            case null:
+                setFilters(prev => ({...prev, feeling: 'positive'}))    
+                setCurrentFeelingicon(positiveIcon)
+                setFilterChangingStatus('fadeIn')
+                break;
+            case 'positive':
+                setFilters(prev => ({...prev, feeling: 'negative'}))
+                setCurrentFeelingicon(negativeIcon)
+                setFilterChangingStatus('fadeIn')
+                break;
+            case 'negative':
+                setFilters(prev => ({...prev, feeling: null}))
+                setCurrentFeelingicon(allIcon)
+                setFilterChangingStatus('fadeIn')
+                break;
         }
     }
     const filterOnClick = () => {
@@ -41,7 +53,7 @@ const FeelingFilter = () => {
         <img src={currentFeelingIcon} onAnimationEnd={filterChangerHandler}/>
     </StyledFilter>
   )
-}
+}  
 
 const StyledFilter = styled.div`
     gap: 1vh;

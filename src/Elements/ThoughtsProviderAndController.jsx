@@ -1,6 +1,7 @@
 import { useState, useEffect} from "react";
 import { createContext, useContext} from "react";
 import axios from "axios";
+import fakeAxios from "../media/fakequery";
 import usePaginationManager from "./usePaginationManager";
 const ThoughtsContext = createContext()
 
@@ -9,21 +10,22 @@ const ThoughtsProviderAndController = ({children}) => {
     const [thoughts, setThoughts] = useState([])
     const numberOfThoughtsPerCall = 120
     const [newThoghtsComing, setNewThoughtsComing] = useState(false)
-    const [filters, setFilters] = useState({feeling: null, createDate: 'desc', upVotes: 'desc', downVotes: 'asc' })
+    const [filters, setFilters] = useState({feeling: null, createdDate: 'desc', upVotes: 'desc', downVotes: null })
     const [apiCallIsLoading, setApiCallIsLoading] = useState(false)
     const [skip, setSkip] = useState(0)
     const [limits, setLimits] = useState({right: false, left: true})
     const [startIndex, setStartIndex] = useState(0)
     const {currentPage, frontPageChanger, noMoreLeft, noMoreRight} = usePaginationManager({thoughts, startIndex, setStartIndex, newThoghtsComing, setNewThoughtsComing})
+
+    const axiosQuery = `thoughts?${ filters.feeling ? `feeling=${filters.feeling}&` : '' }${filters.createdDate ? `createdDate=${filters.createdDate}&` : ''}${ filters.upVotes ? `upVotes=${filters.upVotes}&` : ''}${filters.downVotes ? `DownVotes=${filters.downVotes}&`: ''}`
     //make first query to api
-    const axiosQuery = `thoughts?${ filters.feeling ? `feeling=${filters.feeling}&` : '' }${`createdDate=${filters.createDate}&`}${`upVotes=${filters.upVotes}&`}${`DownVotes=${filters.downVotes}`}`
     useEffect(() => {
         console.log(axiosQuery)
         const apiCall = async () => {
             setApiCallIsLoading(true)
             try{
-                const apidata = await axios.get(`${apiEndpoint}${axiosQuery}`)
-                setThoughts(apidata.data)
+                const apidata = await fakeAxios()
+                setThoughts(apidata)
                 setApiCallIsLoading(false)
             }
             catch(err){

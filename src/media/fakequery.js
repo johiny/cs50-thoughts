@@ -276,7 +276,7 @@ const fakeAxios = () => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
 			resolve(data)
-		}, 10000)
+		}, 1000)
 	})
 }
 export default fakeAxios

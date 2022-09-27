@@ -44,7 +44,7 @@ const Thoughts = (props) => {
       {/* thoughts iteration */}
 			{apiCallIsLoading ?
       [...Array(12)].map(dummyThought => <DummyCard key={nanoid()}/>) :
-      currentPage.map(thought => <Thought {...thought} key={thought.id}/>)
+      currentPage.map(thought => <Thought {...thought} key={nanoid()}/>)
       }
 		</StyledThoughts>
 		<PageArrow arrowDirection={'270deg'} spaceDirection={`left: 0.4vh`} ArrowLimit={rightArrowLimit} ArrowLimitAfterAction={() => setrightArrowLimit(false)}
