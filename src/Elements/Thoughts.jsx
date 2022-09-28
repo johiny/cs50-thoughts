@@ -74,6 +74,9 @@ const StyledThoughts = styled.div`
     grid-auto-rows: 5vh;
     gap: 3.5vh;
     margin: 2vh 0;
+    @media only screen and (max-width: 700px){
+      margin: 2vh 3vh;
+    }
     width: 100%;
 	-webkit-animation: ${props => props.currentAnimation} ${props => props.currentAnimation === goOutLeft || goOutRight ? '0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060)' : '0.10s cubic-bezier(0.230, 1.000, 0.320, 1.000)'} both;
 	        animation: ${props => props.currentAnimation} ${props => props.currentAnimation === goOutLeft || goOutRight ? '0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060)' : '0.10s cubic-bezier(0.230, 1.000, 0.320, 1.000)'} both;

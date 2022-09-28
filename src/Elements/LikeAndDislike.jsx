@@ -15,6 +15,7 @@ const LikeAndDislike = (props) => {
 }
 
 export default LikeAndDislike
+
 const LikesCounter = styled.span`
 grid-column: 1;
 grid-row: 1;
@@ -39,12 +40,21 @@ const LikeAndDislikeContainer = styled.div`
     grid-template-rows: repeat(1fr, 2);
     grid-column-gap: 2vh;
     grid-row-gap: 0.8vh;
-    width: 4vw;
+    width: 30%;
 `
 const Like = styled.img`
     grid-column: 1;
     grid-row: 2;
-    width: 2vw;    
+    width: 2vw;
+    @media only screen and (max-width: 1200px){
+        width: 4vw;
+    }
+    @media only screen and (max-width: 800px){
+        width: 6vw;
+    }
+    @media only screen and (max-width: 650px){
+        width: 10vw;
+    }
     transition: all 0.1s ease-in-out;
     filter: invert(69%) sepia(90%) saturate(3825%) hue-rotate(101deg) brightness(95%) contrast(82%) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 0.6em #17b852);
     :hover{
@@ -58,6 +68,15 @@ const DisLike = styled.img`
     grid-column: 2;
     grid-row: 2;
     width: 2vw;
+    @media only screen and (max-width: 1200px){
+        width: 4vw;
+    }
+    @media only screen and (max-width: 800px){
+        width: 6vw;
+    }
+    @media only screen and (max-width: 650px){
+        width: 10vw;
+    }
     filter: invert(11%) sepia(52%) saturate(6522%) hue-rotate(342deg) brightness(94%) contrast(110%) drop-shadow(0 0 0.5px #fff) drop-shadow(0 0 4px #FF0000);
     transform: rotate(-180deg);
     cursor: pointer;

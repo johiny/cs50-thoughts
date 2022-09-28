@@ -154,6 +154,24 @@ const StyledModal = styled.div`
     display: flex;
     flex-direction: column;
     width: 18%;
+    @media only screen and (max-width: 1600px){
+      width: 20%;
+    }
+    @media only screen and (max-width: 1400px){
+      width: 25%;
+    }
+    @media only screen and (max-width: 1100px){
+      width: 30%;
+    }
+    @media only screen and (max-width: 900px){
+      width: 45%;
+    }
+    @media only screen and (max-width: 600px){
+      width: 60%;
+    }
+    @media only screen and (max-width: 500px){
+      width: 90%;
+    }
     min-height: 50%;
     border-radius: 1vh;
     -webkit-animation: ${flickerEntrance} 1s linear;

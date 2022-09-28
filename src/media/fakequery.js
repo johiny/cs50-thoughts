@@ -275,7 +275,7 @@ const data = JSON.parse(`[
 const fakeAxios = () => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
-			resolve(data)
+			resolve({data: data})
 		}, 1000)
 	})
 }

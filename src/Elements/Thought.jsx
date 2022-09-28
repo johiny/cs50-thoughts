@@ -41,7 +41,7 @@ const StyledThought = styled.div`
     0 0 0.6em var(--card-color),
     0 0 0.6em var(--card-color),
     0 0 0.6em var(--card-color);
-    @media only screen and (min-width: 650px)  {
+    @media only screen and (min-width: 700px)  {
     grid-column: span 3;
   }
   @media only screen and (min-width: 800px)  {

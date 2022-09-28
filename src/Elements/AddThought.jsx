@@ -59,6 +59,12 @@ const StyledAddThought = styled.div`
     align-items: center;
     position: relative;
     top: -1vh;
+    @media only screen and (max-width: 700px){
+        position: fixed;
+        top: 90vh;
+        z-index: 30;
+        left: -4vh;
+    }
     img{
         margin-left: 5vh;
         width: 9vh;
