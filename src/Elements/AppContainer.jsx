@@ -8,6 +8,7 @@ const AppContainer = (props) => {
   const videoRef = useRef(undefined);
     useEffect(() => {
         videoRef.current.defaultMuted = true;
+        videoRef.current.play()
     },[])
   return (
     <ModalProvider>
