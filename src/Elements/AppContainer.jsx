@@ -29,6 +29,7 @@ const StyledAppContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 99.9%;
 `
 const StyledBackground = styled.video`
   z-index: 0;
