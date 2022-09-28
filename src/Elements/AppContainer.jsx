@@ -14,7 +14,7 @@ const AppContainer = (props) => {
     },[])
   return (
     <ModalProvider>
-        <StyledBackground onCanPlay={(e) => { e.target.muted=true; e.target.play() } } ref={videoRef} poster={prevBackground} muted={true} defaultMuted playsinline autoPlay={true} loop={true} onPlay={e => e.target.playbackRate = 0.5}>
+        <StyledBackground onCanPlay={(e) => { e.target.muted=true; e.target.play() } } ref={videoRef} poster={prevBackground} defaultMuted onPlay={e => e.target.playbackRate = 0.5}>
           <source src={ videoBackground } type="video/mp4"/>
         </StyledBackground>
       <StyledAppContainer>
