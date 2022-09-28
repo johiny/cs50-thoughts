@@ -9,6 +9,7 @@ const AppContainer = (props) => {
     useEffect(() => {
       videoRef.current.setAttribute('playsinline', 'true')
       videoRef.current.setAttribute('muted', 'muted')
+      videoRef.current.muted = true
       videoRef.current.setAttribute('autoplay', 'true')
       videoRef.current.setAttribute('loop', 'true')
     },[])
