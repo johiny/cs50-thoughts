@@ -11,10 +11,6 @@ const AppContainer = (props) => {
         videoRef.current.loop = true;
         videoRef.current.muted = true;
         videoRef.current.setAttribute('playsinline', 'true')
-        let isPlaying = videoRef.current.currentTime > 0 && !videoRef.current.paused && !videoRef.current.ended && videoRef.current.readyState > videoRef.current.HAVE_CURRENT_DATA;
-        if(!isPlaying){
-          videoRef.current.play()
-        } 
     },[])
   return (
     <ModalProvider>
