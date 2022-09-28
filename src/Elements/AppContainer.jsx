@@ -3,10 +3,15 @@ import styled from 'styled-components'
 import prevBackground from  '../media/background_poster.jpg'
 import videoBackground from '../media/cs50_background.mp4'
 import { ModalProvider } from 'styled-react-modal'
+import { useRef, useEffect } from 'react'
 const AppContainer = (props) => {
+  const videoRef = useRef(undefined);
+    useEffect(() => {
+        videoRef.current.defaultMuted = true;
+    },[])
   return (
     <ModalProvider>
-        <StyledBackground poster={prevBackground} defaultMuted preload="auto" playsinline autoPlay muted='muted' loop onPlay={e => e.target.playbackRate = 0.5}>
+        <StyledBackground ref={videoRef} poster={prevBackground} muted={true} defaultMuted playsinline autoPlay={true} loop={true} onPlay={e => e.target.playbackRate = 0.5}>
           <source src={ videoBackground } type="video/mp4"/>
         </StyledBackground>
       <StyledAppContainer>
@@ -20,7 +25,6 @@ const StyledAppContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 99.9%;
 `
 const StyledBackground = styled.video`
   z-index: 0;
