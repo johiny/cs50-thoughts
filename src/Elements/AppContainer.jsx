@@ -7,16 +7,11 @@ import { useRef, useEffect } from 'react'
 const AppContainer = (props) => {
   const videoRef = useRef(undefined);
     useEffect(() => {
-      videoRef.current.setAttribute('playsinline', 'true')
-      videoRef.current.setAttribute('muted', 'true')
-      videoRef.current.muted = true
-      videoRef.current.setAttribute('autoplay', 'true')
-      videoRef.current.setAttribute('loop', 'true')
-      videoRef.current.play()
+      videoRef.current.setAttribute('muted', '')
     },[])
   return (
     <ModalProvider>
-        <StyledBackground ref={videoRef} poster={prevBackground} defaultMuted onPlay={e => e.target.playbackRate = 0.5}>
+        <StyledBackground defaultMuted muted playsInline autoPlay loop ref={videoRef} poster={prevBackground} onPlay={e => e.target.playbackRate = 0.5}>
           <source src={ videoBackground } type="video/mp4"/>
         </StyledBackground>
       <StyledAppContainer>
