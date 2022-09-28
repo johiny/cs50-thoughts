@@ -7,10 +7,10 @@ import { useRef, useEffect } from 'react'
 const AppContainer = (props) => {
   const videoRef = useRef(undefined);
     useEffect(() => {
-      videoRef.current.setAttribute('playsinline', '')
-      videoRef.current.setAttribute('muted', '')
-      videoRef.current.setAttribute('autoplay', '')
-      videoRef.current.setAttribute('loop', '')
+      videoRef.current.setAttribute('playsinline', 'true')
+      videoRef.current.setAttribute('muted', 'muted')
+      videoRef.current.setAttribute('autoplay', 'true')
+      videoRef.current.setAttribute('loop', 'true')
     },[])
   return (
     <ModalProvider>
