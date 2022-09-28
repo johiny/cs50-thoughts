@@ -4,10 +4,8 @@ import addIcon from "../media/addIcon.svg"
 import { keyframes } from 'styled-components'
 const AddThought = (props) => {
   return (
-    <StyledAddThought>
-        <img src={addIcon} 
+        <StyledAddThought src={addIcon} 
         onClick={props.action}/>
-    </StyledAddThought>
   )
 }
 
@@ -53,19 +51,14 @@ const jelly = keyframes`
             transform: scale3d(1, 1, 1);
   }
 `
-const StyledAddThought = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+const StyledAddThought = styled.img`
     position: relative;
-    top: -1vh;
     @media only screen and (max-width: 700px){
         position: fixed;
-        bottom: -90%;
+        bottom: 1%;
         z-index: 30;
-        left: -4vh;
+        left: -7%;
     }
-    img{
         margin-left: 5vh;
         width: 9vh;
         filter: invert(97%) sepia(0%) saturate(0%) hue-rotate(122deg) brightness(103%) contrast(103%) drop-shadow(0 0 4px #fff) drop-shadow(0 0 2px #17b852)  drop-shadow(0 0 10px #17b852);
@@ -76,5 +69,4 @@ const StyledAddThought = styled.div`
             -webkit-animation: ${jelly} 0.9s both;
             cursor: pointer;
         }
-    }
 `
