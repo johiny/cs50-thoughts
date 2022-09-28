@@ -7,7 +7,9 @@ import { useRef, useEffect } from 'react'
 const AppContainer = (props) => {
   const videoRef = useRef(undefined);
     useEffect(() => {
-        videoRef.current.setAttribute('muted', 'true')
+        videoRef.current.setAttribute('defaultMuted', '')
+        videoRef.current.setAttribute('muted', '')
+        videoRef.current.setAttribute('playsinline', '')
         videoRef.current.play()
     },[])
   return (
