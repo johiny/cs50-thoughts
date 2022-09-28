@@ -61,7 +61,7 @@ const StyledAddThought = styled.div`
     top: -1vh;
     @media only screen and (max-width: 700px){
         position: fixed;
-        bottom: 2vh;
+        bottom: -90%;
         z-index: 30;
         left: -4vh;
     }
