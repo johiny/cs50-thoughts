@@ -1,19 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 import prevBackground from  '../media/background_poster.jpg'
-import videoBackground from '../media/cs50_background.mp4'
+import videoBackgroundDesktop from '../media/cs50_background_bigScreen.mp4'
+import videoBackgroundMobile from '../media/cs50_background_mobile_optimized.mp4'
 import { ModalProvider } from 'styled-react-modal'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect} from 'react'
+import isMobile from './CustomHooks/useIsMobile'
 const AppContainer = (props) => {
+  const ismobile = isMobile()
   const videoRef = useRef(undefined);
     useEffect(() => {
       videoRef.current.setAttribute('muted', '')
     },[])
   return (
     <ModalProvider>
-        <StyledBackground defaultMuted muted playsInline autoPlay loop ref={videoRef} poster={prevBackground} onPlay={e => e.target.playbackRate = 0.5}>
-          <source src={ videoBackground } type="video/mp4"/>
-        </StyledBackground>
+        <StyledBackground onError={(e) => console.log(e.target.error)} src={ismobile ? videoBackgroundMobile : videoBackgroundDesktop} type="video/mp4" defaultMuted muted playsInline autoPlay loop ref={videoRef} poster={prevBackground} onCanPlay={e => e.target.playbackRate = ismobile ? 0.9 : 0.5}/>
       <StyledAppContainer>
         {props.children}
       </StyledAppContainer>

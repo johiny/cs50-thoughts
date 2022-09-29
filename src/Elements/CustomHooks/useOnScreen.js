@@ -8,7 +8,6 @@ const useOnScreen = (callback, intersectionRatio) => {
     }
     useEffect(() => {
         const observer = new IntersectionObserver(callback, options)
-        console.log(elementRef.current)
         if(elementRef.current) observer.observe(elementRef.current)
         return () => {
             if(elementRef.current) observer.unobserve(elementRef.current)

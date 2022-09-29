@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap');
 html{
-    background-image: url(/src/media/background_poster.jpg);
+    background-image: url(/src/media/cs50backgroundGif.gif);
     -webkit-tap-highlight-color: transparent;
 }
 body{
