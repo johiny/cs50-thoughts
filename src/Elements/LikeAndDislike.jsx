@@ -59,7 +59,15 @@ const Like = styled.img`
     filter: invert(69%) sepia(90%) saturate(3825%) hue-rotate(101deg) brightness(95%) contrast(82%) drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 0.6em #17b852);
     :hover{
         width: 2.5vw;
-
+        @media only screen and (max-width: 1200px){
+        width: 5vw;
+    }
+    @media only screen and (max-width: 800px){
+        width: 7vw;
+    }
+    @media only screen and (max-width: 650px){
+        width: 12vw;
+    }
     }
     cursor: pointer;
 `
@@ -82,6 +90,15 @@ const DisLike = styled.img`
     cursor: pointer;
     transition: all 0.1s ease-in-out;
     :hover{
-        width:  2.5vw;
+        width: 2.5vw;
+        @media only screen and (max-width: 1200px){
+        width: 5vw;
+    }
+    @media only screen and (max-width: 800px){
+        width: 7vw;
+    }
+    @media only screen and (max-width: 650px){
+        width: 12vw;
+    }
     }
 `

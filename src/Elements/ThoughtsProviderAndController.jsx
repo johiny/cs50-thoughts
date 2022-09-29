@@ -23,7 +23,7 @@ const ThoughtsProviderAndController = ({children}) => {
         const apiCall = async () => {
             setApiCallIsLoading(true)
             try{
-                const apidata = await axios.get(`${apiEndpoint}${axiosQuery}`)
+                const apidata = await fakeAxios()
                 setThoughts(apidata.data)
                 setApiCallIsLoading(false)
             }
