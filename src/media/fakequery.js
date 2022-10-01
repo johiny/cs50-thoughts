@@ -1,7 +1,7 @@
 const data = JSON.parse(`[
 	{
 		"id": 1,
-		"byUsername": "johiny",
+		"byUsername": "pacoElCaguamas23",
 		"content": "I love cs50 so much! i will never forget those weeks!",
 		"feeling": "positive",
 		"upVotes": 19,

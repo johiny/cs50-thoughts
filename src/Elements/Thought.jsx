@@ -11,7 +11,7 @@ const Thought = (props) => {
         <Textfit className='textFit' min={1} max={16}>{props.content}</Textfit>
         <ThoughtFooter>
         <LikeAndDislike upVotes={props.upVotes} downVotes={props.DownVotes} id={props.id} setIsLoading={setIsLoading}/>
-        <span>{props.byUsername}</span>
+        <Textfit className='textFit_username' mode='single' min={1} max={17}>{props.byUsername}</Textfit>
         </ThoughtFooter>
     </StyledThought>
   )
@@ -76,9 +76,11 @@ const ThoughtFooter = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  >span{
+  >.textFit_username{
     align-self: flex-end;
     font-style: italic;
+    width: 100%;
+    text-align: right;
   }
 `
 
