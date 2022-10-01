@@ -3,6 +3,7 @@ import { createContext, useContext} from "react";
 import axios from "axios";
 import fakeAxios from "../media/fakequery";
 import usePaginationManager from "./usePaginationManager";
+import apiCall from "./CustomHooks/apiCall";
 const ThoughtsContext = createContext()
 
 const ThoughtsProviderAndController = ({children}) => {
@@ -20,19 +21,8 @@ const ThoughtsProviderAndController = ({children}) => {
     const axiosQuery = `thoughts?${ filters.feeling ? `feeling=${filters.feeling}&` : '' }${filters.createdDate ? `createdDate=${filters.createdDate}&` : ''}${ filters.upVotes ? `upVotes=${filters.upVotes}&` : ''}${filters.downVotes ? `DownVotes=${filters.downVotes}&`: ''}`
     //make first query to api
     useEffect(() => {
-        const apiCall = async () => {
-            setApiCallIsLoading(true)
-            try{
-                const apidata = axios.get(`${apiEndpoint}${axiosQuery}`)
-                setThoughts(apidata.data)
-                setApiCallIsLoading(false)
-            }
-            catch(err){
-                console.log(err)
-                setThoughts([])
-            }
-        }
-        apiCall()
+        const thoughtsRoute = `${apiEndpoint}${axiosQuery}`
+        apiCall(thoughtsRoute, 5, setApiCallIsLoading, setThoughts)
     },[filters])
 
     //see if there is more thought
