@@ -1,7 +1,7 @@
 import React from 'react'
 import Arrow from '../media/filter-arrow.svg'
 import styled from 'styled-components'
-import { keyframes } from 'styled-components'
+import { keyframes, css } from 'styled-components'
 const PageArrow = (props) => {
   return (
     <StyledArrow ArrowLimit={props.ArrowLimit} src={Arrow} arrowDirection={props.arrowDirection}
@@ -50,24 +50,24 @@ const jelly = keyframes`
             transform: scale3d(1, 1, 1);
   }
 `
-
+const arrowAnimation = (props) => css`
+  animation: ${props.ArrowLimit ? arrowLimitAnimation(props.arrowDirection) : floating(props.arrowDirection)} ${props.ArrowLimit ? '0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both' : '3500ms infinite cubic-bezier(.25,.46,.45,.94)'};
+    -webkit-animation: ${props.ArrowLimit ? arrowLimitAnimation(props.arrowDirection) : floating(props.arrowDirection)} ${props.ArrowLimit ? '0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both' : '3500ms infinite cubic-bezier(.25,.46,.45,.94)'};
+`
 const StyledArrow = styled.img`
     filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(66deg) brightness(104%) contrast(101%) drop-shadow(0px 0px 5px #ffffff);; 
     width: 5vh;
     transform: ${props => `rotate(${props.arrowDirection})`};
     position: relative;
     z-index: 30;
+    ${props => arrowAnimation({ArrowLimit: props.ArrowLimit, arrowDirection: props.arrowDirection})}
     @media only screen and (max-width: 700px){
-      animation: ${props => floating(props.arrowDirection)} 3500ms infinite cubic-bezier(.25,.46,.45,.94);
-      -webkit-animation: ${props => floating(props.arrowDirection)} 3500ms infinite cubic-bezier(.25,.46,.45,.94);
       position: fixed;
       left: ${props => props.arrowDirection == '270deg' ? '90%' : '75%'};
       bottom: 4%;
       width: 7vh;
     }
     @media only screen and (max-width: 500px){
-      animation: ${props => floating(props.arrowDirection)} 3500ms infinite cubic-bezier(.25,.46,.45,.94);
-      -webkit-animation: ${props => floating(props.arrowDirection)} 3500ms infinite cubic-bezier(.25,.46,.45,.94);
       position: fixed;
       left: ${props => props.arrowDirection == '270deg' ? '85%' : '70%'};
       bottom: 4%;
@@ -79,8 +79,6 @@ const StyledArrow = styled.img`
     :hover{
         width: 7vh;
     }
-    animation: ${props => props.ArrowLimit ? arrowLimitAnimation(props.arrowDirection) : 'none'} 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-    -webkit-animation: ${props => props.ArrowLimit ? arrowLimitAnimation(props.arrowDirection) : 'none'} 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 `
 const arrowLimitAnimation = (arrowDirection) => keyframes`
 0%,
