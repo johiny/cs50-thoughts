@@ -2,11 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import allIcon from '../media/AllIcon.svg'
 import YearsList from './YearsList'
+import { useState } from 'react'
 const YearFilter = () => {
+    const [isOpen, setIsOpen] = useState(false)
   return (
     <StyledContainer>
-        <YearsList/>
-    <StyledYearFilter>
+        {isOpen? <YearsList setIsOpen={setIsOpen} isOpen={isOpen}/> : null}
+    <StyledYearFilter onClick={() => setIsOpen(!isOpen)}>
          <h6>Year</h6>
          <img src={allIcon}></img>
     </StyledYearFilter>
@@ -18,7 +20,6 @@ const StyledContainer = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
-    bottom: 6.2vh;
 `
 const StyledYearFilter = styled.div`
     gap: 1vh;
