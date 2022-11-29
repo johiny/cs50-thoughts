@@ -2,10 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import allIcon from '../media/AllIcon.svg'
 import YearsList from './YearsList'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 const YearFilter = () => {
     const [isOpen, setIsOpen] = useState(false)
     const filterButtonRef = useRef(null)
+    useEffect(() => {
+        console.log(isOpen)
+    },[isOpen])
   return (
     <StyledContainer>
         <YearsList setIsOpen={setIsOpen} isOpen={isOpen} filterButtonRef={filterButtonRef}/>

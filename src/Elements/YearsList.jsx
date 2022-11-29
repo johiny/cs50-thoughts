@@ -7,6 +7,7 @@ const YearsList = (props) => {
     const [years, setYears] = useState(createArrayToThisYear(1989))
     const yearsListRef = useRef(null)
     const close = (e) => {
+      console.log(props.isOpen)
       if(yearsListRef.current && props.isOpen && !yearsListRef.current.contains(e.target) && !props.filterButtonRef.current.contains(e.target)){
         props.setIsOpen(false)
       }
@@ -14,7 +15,7 @@ const YearsList = (props) => {
     useEffect(() => {
       document.addEventListener("mousedown", close);
       return () => document.removeEventListener("mousedown", close);
-  }, []);
+  }, [props.isOpen]);
   return (
       <StyledYearsList ref={yearsListRef} isOpen={props.isOpen}>
             <ul>
@@ -28,6 +29,7 @@ const YearsList = (props) => {
 
 const UpFromBottom = keyframes`
   0% {
+    visibility: visible;
     -webkit-transform: rotateX(-70deg);
             transform: rotateX(-70deg);
     -webkit-transform-origin: bottom;
@@ -35,6 +37,7 @@ const UpFromBottom = keyframes`
     opacity: 0;
   }
   100% {
+    visibility: visible;
     -webkit-transform: rotateX(0);
             transform: rotateX(0);
     -webkit-transform-origin: bottom;
@@ -44,6 +47,7 @@ const UpFromBottom = keyframes`
 `
 const ToBottomFromUp = keyframes`
  0% {
+    visibility: visible;
     -webkit-transform: rotateX(0);
             transform: rotateX(0);
     -webkit-transform-origin: bottom;
@@ -51,6 +55,7 @@ const ToBottomFromUp = keyframes`
     opacity: 1;
   }
   100% {
+    visibility: visible;
     -webkit-transform: rotateX(-70deg);
             transform: rotateX(-70deg);
     -webkit-transform-origin: bottom;
@@ -67,6 +72,7 @@ const StyledYearsList = styled.div`
     position: absolute;
     bottom: 8vh;
     z-index: 60;
+    visibility: hidden;
     -webkit-mask: linear-gradient( rgba(0,0,0,0) 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 31%, rgba(0,0,0,1) 61%, rgba(0,0,0,0) 100%);
     mask: linear-gradient( rgba(0,0,0,0) 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 31%, rgba(0,0,0,1) 61%, rgba(0,0,0,0) 100%);
     animation: ${props => props.isOpen ? UpFromBottom : ToBottomFromUp} ${props => props.isOpen ? '0.6s cubic-bezier(0.175, 0.885, 0.320, 1.275) both' : '0.45s cubic-bezier(0.600, -0.280, 0.735, 0.045) both'};
