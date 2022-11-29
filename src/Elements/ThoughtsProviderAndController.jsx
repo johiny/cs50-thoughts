@@ -11,7 +11,7 @@ const ThoughtsProviderAndController = ({children}) => {
     const [thoughts, setThoughts] = useState([])
     const numberOfThoughtsPerCall = 120
     const [newThoghtsComing, setNewThoughtsComing] = useState(false)
-    const [filters, setFilters] = useState({feeling: null, createdDate: 'desc', upVotes: 'desc', downVotes: null })
+    const [filters, setFilters] = useState({feeling: null, createdDate: 'desc', upVotes: 'desc', downVotes: null, cs50year : null})
     const [apiCallIsLoading, setApiCallIsLoading] = useState(false)
     const [skip, setSkip] = useState(0)
     const [limits, setLimits] = useState({right: false, left: true})

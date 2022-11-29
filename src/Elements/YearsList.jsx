@@ -7,7 +7,6 @@ const YearsList = (props) => {
     const [years, setYears] = useState(createArrayToThisYear(1989))
     const yearsListRef = useRef(null)
     const close = (e) => {
-      console.log(props.isOpen)
       if(yearsListRef.current && props.isOpen && !yearsListRef.current.contains(e.target) && !props.filterButtonRef.current.contains(e.target)){
         props.setIsOpen(false)
       }
@@ -19,8 +18,9 @@ const YearsList = (props) => {
   return (
       <StyledYearsList ref={yearsListRef} isOpen={props.isOpen}>
             <ul>
+            <li  onClick={() => props.setSelectedYear(null)}>ALL</li>
             {years.map((year) => {
-                return <li>{year}</li>
+                return <li  onClick={() => props.setSelectedYear(year)}>{year}</li>
             })}
             </ul>
       </StyledYearsList>
@@ -87,6 +87,7 @@ const StyledYearsList = styled.div`
         margin: 0;
     }
     li{
+      text-align: center;
         text-shadow:
     0 0 2px #fff,
     0 0 4px #fff,
