@@ -2,13 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import allIcon from '../media/AllIcon.svg'
 import YearsList from './YearsList'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 const YearFilter = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const filterButtonRef = useRef(null)
   return (
     <StyledContainer>
-        {isOpen? <YearsList setIsOpen={setIsOpen} isOpen={isOpen}/> : null}
-    <StyledYearFilter onClick={() => setIsOpen(!isOpen)}>
+        <YearsList setIsOpen={setIsOpen} isOpen={isOpen} filterButtonRef={filterButtonRef}/>
+    <StyledYearFilter onClick={() => setIsOpen(!isOpen)} ref={filterButtonRef}>
          <h6>Year</h6>
          <img src={allIcon}></img>
     </StyledYearFilter>
