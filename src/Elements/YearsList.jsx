@@ -75,8 +75,8 @@ const StyledYearsList = styled.div`
     visibility: hidden;
     -webkit-mask: linear-gradient( rgba(0,0,0,0) 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 31%, rgba(0,0,0,1) 61%, rgba(0,0,0,0) 100%);
     mask: linear-gradient( rgba(0,0,0,0) 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 31%, rgba(0,0,0,1) 61%, rgba(0,0,0,0) 100%);
-    animation: ${props => props.isOpen ? UpFromBottom : ToBottomFromUp} ${props => props.isOpen ? '0.6s cubic-bezier(0.175, 0.885, 0.320, 1.275) both' : '0.45s cubic-bezier(0.600, -0.280, 0.735, 0.045) both'};
-    -webkit-animation: ${props => props.isOpen ? UpFromBottom : ToBottomFromUp} ${props => props.isOpen ? '0.6s cubic-bezier(0.175, 0.885, 0.320, 1.275) both' : '0.45s cubic-bezier(0.600, -0.280, 0.735, 0.045) both'};
+    animation: ${props => props.isOpen == 'begin' ? '' : props.isOpen ? UpFromBottom : ToBottomFromUp} ${props => props.isOpen ? '0.6s cubic-bezier(0.175, 0.885, 0.320, 1.275) both' : '0.45s cubic-bezier(0.600, -0.280, 0.735, 0.045) both'};
+    -webkit-animation: ${props => props.isOpen == 'begin' ? '' : props.isOpen ? UpFromBottom : ToBottomFromUp} ${props => props.isOpen ? '0.6s cubic-bezier(0.175, 0.885, 0.320, 1.275) both' : '0.45s cubic-bezier(0.600, -0.280, 0.735, 0.045) both'};
     ::-webkit-scrollbar {
     width: 0; 
     background: transparent;

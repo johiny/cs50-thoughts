@@ -7,7 +7,7 @@ import { useThoughtsProviderAndController } from './ThoughtsProviderAndControlle
 import { keyframes } from 'styled-components'
 const YearFilter = () => {
     const {setFilters, filters} = useThoughtsProviderAndController()
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState('begin')
     const [selectedYear, setSelectedYear] = useState('begin')
     const filterButtonRef = useRef(null)
 
@@ -36,7 +36,15 @@ const YearFilter = () => {
   return (
     <StyledContainer>
         <YearsList setIsOpen={setIsOpen} isOpen={isOpen} filterButtonRef={filterButtonRef} setSelectedYear={setSelectedYear}/>
-    <StyledYearFilter onClick={() => setIsOpen(!isOpen)} ref={filterButtonRef} FilterChangingStatus={FilterChangingStatus}>
+    <StyledYearFilter onClick={() => {
+        if(typeof isOpen != 'boolean'){
+            setIsOpen(true)
+        }
+        else{
+            setIsOpen(!isOpen)
+        }
+    }
+    } ref={filterButtonRef} FilterChangingStatus={FilterChangingStatus}>
          <h6>Year</h6>
          <div onAnimationEnd={filterChangingHandler}>{filters.cs50year == null ? <img src={allIcon}></img> : <li>{filters.cs50year}</li>}</div>
     </StyledYearFilter>
@@ -104,9 +112,8 @@ const StyledYearFilter = styled.div`
             filter: brightness(104%) invert(100%) sepia(0%) saturate(2%) hue-rotate(66deg) brightness(90%) contrast(101%) drop-shadow(0 0 1.5px #fff);
         }
         li{
-        color: #ffffffde;
-        text-shadow: none;
-    }
+        color: #cfcfcfde;
+        text-shadow: 0 0 2px #686464de, 0 0 4px #fdfcfcde, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff;
 }         
 `
 
