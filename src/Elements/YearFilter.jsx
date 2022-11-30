@@ -34,7 +34,7 @@ const YearFilter = () => {
     },[selectedYear])
   return (
     <StyledContainer>
-        <YearsList setIsOpen={setIsOpen} isOpen={isOpen} filterButtonRef={filterButtonRef} setSelectedYear={setSelectedYear}/>
+        <YearsList setIsOpen={setIsOpen} isOpen={isOpen} switchButton={filterButtonRef} setSelectedYear={setSelectedYear}/>
     <StyledYearFilter onClick={() => {
         if(typeof isOpen != 'boolean'){
             setIsOpen(true)

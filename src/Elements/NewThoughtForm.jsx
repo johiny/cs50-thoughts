@@ -2,18 +2,23 @@ import React from 'react'
 import { css } from 'styled-components'
 import styled from 'styled-components'
 import thumbIcon from '../media/thumbIcon.svg'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import validateField from './CustomHooks/validateFunctions'
 import { toast } from 'react-toastify';
 import axios from 'axios'
 import fakeAxiosPost from '../media/fakePost'
 import { useThoughtsProviderAndController } from './ThoughtsProviderAndController'
+import YearsListSelect from './YearsListSelect'
 const NewThoughtForm = (props) => {
     const [selectedFeeling, setSelectedFeeling] = useState('')
     const [errorMessages, seterrorMessages] = useState({username: null, thought: null, feeling: null})
     const [dirtyFields, setDirtyFields] = useState({username: false, thought: false, feeling: false})
     const {setThoughts} = useThoughtsProviderAndController()
-    const api = import.meta.env.VITE_API 
+    const api = import.meta.env.VITE_API
+    
+    const [isOpen, setIsOpen] = useState('begin')
+    const [selectedYear, setSelectedYear] = useState('begin')
+    const openSelectButton = useRef(null)
     useEffect(() => {
         validateField('feeling', selectedFeeling, seterrorMessages)
     },[selectedFeeling])
@@ -57,14 +62,24 @@ const NewThoughtForm = (props) => {
         onKeyUp={() => {
             setDirtyFields(prev => ({...prev, username: true}))
         }}/>
-
         { errorMessages.thought && dirtyFields.thought ? <StyledErrorMessage>{errorMessages.thought}</StyledErrorMessage> : null}
         <textarea name='thought' placeholder="What's your thought?"
         onChange={(e) => validateField('thought', e.target.value, seterrorMessages)}
         onKeyUp={() => {
             setDirtyFields(prev => ({...prev, thought: true}))
         }}/>
-
+        <StyledSelect onClick={() => {
+                if(typeof isOpen != 'boolean'){
+                    setIsOpen(true)
+                }
+                else{
+                    setIsOpen(!isOpen)
+                }
+            }
+        }>
+        <h5>{selectedYear == 'begin' | selectedYear == null ? 'What edition did you take?': selectedYear}</h5>
+        <YearsListSelect setIsOpen={setIsOpen} isOpen={isOpen} switchButton={openSelectButton} setSelectedYear={setSelectedYear}/>
+        </StyledSelect>
         <h5>Your thought is?</h5>
         { errorMessages.feeling && dirtyFields.feeling ? <StyledErrorMessage>{errorMessages.feeling}</StyledErrorMessage> : null}
         <FeelingsContainer>
@@ -86,11 +101,6 @@ const NewThoughtForm = (props) => {
   )
 }
 
-const StyledErrorMessage = styled.span`
-    color: white;
-    font-size: 1.2vh;
-    text-align: center;
-`
 const neonBox = css`
     transition: all ease-in-out 500ms;
     box-shadow:
@@ -104,6 +114,41 @@ const neonBox = css`
     0 0 0.6em var(--card-color);
 `
 
+const StyledSelect = styled.div`
+    position: relative;
+    background: transparent;
+    margin-top: 2vh;
+    color: #fff;
+    text-align: center;
+    ${neonBox};
+    border-radius: 3px;
+    width: 75%;
+    align-self: center;
+    transition: max-height 1s ease-out;
+    :hover{
+        cursor: pointer;
+       >h5{
+        color:#d1cdcd;
+       }
+    }
+    >h5{
+        margin-bottom: 0;
+        margin-top: 0;
+        margin-left: auto;
+        margin-right: auto;
+        color:#515151;
+        font-size: 2vh;
+        padding: 1vh;
+        
+    }
+`
+
+const StyledErrorMessage = styled.span`
+    color: white;
+    font-size: 1.2vh;
+    text-align: center;
+`
+
 const  StyledForm = styled.form`
     display: flex;
     flex-direction: column;
@@ -111,7 +156,7 @@ const  StyledForm = styled.form`
     font-family: 'Roboto', sans-serif;
     flex-grow: 1;
     justify-content: center;
-    h5{
+    >h5{
         margin-bottom: 0;
         margin-top: 2vh;
         margin-left: auto;
@@ -132,6 +177,9 @@ const  StyledForm = styled.form`
         ::placeholder{
             text-align: center;
         }
+        :focus{
+        outline: none;
+    }
     }
     textarea{
         ::-webkit-scrollbar{
@@ -156,6 +204,9 @@ const  StyledForm = styled.form`
             line-height: 200%;
         }
         min-height: 25vh;
+        :focus{
+        outline: none;
+    }
     }
     button{
         cursor: pointer;
