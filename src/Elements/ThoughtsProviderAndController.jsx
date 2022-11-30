@@ -18,7 +18,7 @@ const ThoughtsProviderAndController = ({children}) => {
     const [startIndex, setStartIndex] = useState(0)
     const {currentPage, frontPageChanger, noMoreLeft, noMoreRight} = usePaginationManager({thoughts, startIndex, setStartIndex, newThoghtsComing, setNewThoughtsComing})
 
-    const axiosQuery = `thoughts?${ filters.feeling ? `feeling=${filters.feeling}&` : '' }${filters.createdDate ? `createdDate=${filters.createdDate}&` : ''}${ filters.upVotes ? `upVotes=${filters.upVotes}&` : ''}${filters.downVotes ? `DownVotes=${filters.downVotes}&`: ''}`
+    const axiosQuery = `thoughts?${ filters.feeling ? `feeling=${filters.feeling}&` : '' }${filters.createdDate ? `createdDate=${filters.createdDate}&` : ''}${ filters.upVotes ? `upVotes=${filters.upVotes}&` : ''}${filters.downVotes ? `DownVotes=${filters.downVotes}&`: ''}${filters.cs50year ? `cs50year=${filters.cs50year}&`: ''}`
     //make first query to api
     useEffect(() => {
         const thoughtsRoute = `${apiEndpoint}${axiosQuery}`

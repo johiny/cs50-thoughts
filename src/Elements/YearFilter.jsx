@@ -22,7 +22,6 @@ const YearFilter = () => {
                 setFilterChangingStatus('fadeOut')
             }
             else{
-                console.log('wtf',selectedYear)
                 setFilters(prev => ({...prev, cs50year: selectedYear}))
                 setFilterChangingStatus('fadeIn')
             }
@@ -114,6 +113,7 @@ const StyledYearFilter = styled.div`
         li{
         color: #cfcfcfde;
         text-shadow: 0 0 2px #686464de, 0 0 4px #fdfcfcde, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff;
+}
 }         
 `
 
