@@ -29,7 +29,7 @@ const NewThoughtForm = (props) => {
             byUsername: e.target.elements.username.value,
              content: e.target.elements.thought.value,
              feeling: selectedFeeling,
-             year: selectedYear
+             cs50year: selectedYear
         }
         console.log(thought) 
         props.setNewThoughtLoading(true)
