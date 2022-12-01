@@ -11,8 +11,8 @@ import { useThoughtsProviderAndController } from './ThoughtsProviderAndControlle
 import YearsListSelect from './YearsListSelect'
 const NewThoughtForm = (props) => {
     const [selectedFeeling, setSelectedFeeling] = useState('')
-    const [errorMessages, seterrorMessages] = useState({username: null, thought: null, feeling: null})
-    const [dirtyFields, setDirtyFields] = useState({username: false, thought: false, feeling: false})
+    const [errorMessages, seterrorMessages] = useState({username: null, thought: null, feeling: null, year: null})
+    const [dirtyFields, setDirtyFields] = useState({username: false, thought: false, feeling: false, year: false})
     const {setThoughts} = useThoughtsProviderAndController()
     const api = import.meta.env.VITE_API
     
@@ -68,17 +68,26 @@ const NewThoughtForm = (props) => {
         onKeyUp={() => {
             setDirtyFields(prev => ({...prev, thought: true}))
         }}/>
-        <StyledSelect onClick={() => {
+        { errorMessages.year && dirtyFields.year ? <StyledErrorMessage style={{paddingTop : '2vh'}}>{errorMessages.year}</StyledErrorMessage> : null}
+        <StyledSelect ref={openSelectButton} onClick={() => {
                 if(typeof isOpen != 'boolean'){
                     setIsOpen(true)
                 }
                 else{
                     setIsOpen(!isOpen)
                 }
+                setDirtyFields(prev => ({...prev, year: true}))
             }
         }>
         <h5>{selectedYear == 'begin' | selectedYear == null ? 'What edition did you take?': selectedYear}</h5>
-        <YearsListSelect setIsOpen={setIsOpen} isOpen={isOpen} switchButton={openSelectButton} setSelectedYear={setSelectedYear}/>
+        <YearsListSelect 
+        setIsOpen={setIsOpen} 
+        isOpen={isOpen} 
+        setSelectedYear={setSelectedYear} 
+        selectedYear={selectedYear} 
+        switchButton={openSelectButton} 
+        validateField={validateField}
+        seterrorMessages={seterrorMessages}/>
         </StyledSelect>
         <h5>Your thought is?</h5>
         { errorMessages.feeling && dirtyFields.feeling ? <StyledErrorMessage>{errorMessages.feeling}</StyledErrorMessage> : null}
@@ -95,7 +104,7 @@ const NewThoughtForm = (props) => {
                 }}/>
         </FeelingsContainer>
         <button type='submit' 
-        disabled={errorMessages.username || errorMessages.thought || errorMessages.feeling}>
+        disabled={errorMessages.username || errorMessages.thought || errorMessages.feeling || errorMessages.year}>
         Share</button>
     </StyledForm>
   )

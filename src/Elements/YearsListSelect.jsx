@@ -10,6 +10,7 @@ const YearsListSelect = (props) => {
     const close = (e) => {
       if(yearsListRef.current && props.isOpen && !yearsListRef.current.contains(e.target) && !props.switchButton.current.contains(e.target)){
         props.setIsOpen(false)
+        props.validateField('year', props.selectedYear, props.seterrorMessages)
       }
     }
     useEffect(() => {
@@ -25,6 +26,7 @@ const YearsListSelect = (props) => {
 const animationEndHandler = () => {
   if(props.isOpen == false){
     setDisplayState(false)
+    props.validateField('year', props.selectedYear, props.seterrorMessages)
   }
 }
   return (
