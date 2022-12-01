@@ -28,8 +28,10 @@ const NewThoughtForm = (props) => {
     let thought = {
             byUsername: e.target.elements.username.value,
              content: e.target.elements.thought.value,
-             feeling: selectedFeeling
-        } 
+             feeling: selectedFeeling,
+             year: selectedYear
+        }
+        console.log(thought) 
         props.setNewThoughtLoading(true)
         toast.promise(axios.post(`${api}thoughts`, thought), {
             pending: {
