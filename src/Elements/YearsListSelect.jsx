@@ -3,6 +3,7 @@ import { createArrayToThisYear } from './randomFunctions'
 import { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { keyframes } from 'styled-components'
+import { nanoid } from 'nanoid'
 const YearsListSelect = (props) => {
     const [years, setYears] = useState(createArrayToThisYear(1989))
     const [displayState, setDisplayState] = useState(false)
@@ -33,7 +34,7 @@ const animationEndHandler = () => {
       <StyledYearsList ref={yearsListRef} isOpen={props.isOpen} displayState={displayState} onAnimationEnd={animationEndHandler}>
             <ul>
             {years.map((year) => {
-                return <li  onClick={() => props.setSelectedYear(year)}>{year}</li>
+                return <li  key={nanoid()} onClick={() => props.setSelectedYear(year)}>{year}</li>
             })}
             </ul>
       </StyledYearsList>

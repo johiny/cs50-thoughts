@@ -3,11 +3,12 @@ import { createArrayToThisYear } from './randomFunctions'
 import { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { keyframes } from 'styled-components'
+import { nanoid } from 'nanoid'
 const YearsList = (props) => {
     const [years, setYears] = useState(createArrayToThisYear(1989))
     const yearsListRef = useRef(null)
     const close = (e) => {
-      if(yearsListRef.current && props.isOpen && !yearsListRef.current.contains(e.target) && !props.switchButton.current.contains(e.target)){
+      if(yearsListRef.current && props.isOpen !='begin' && props.isOpen && !yearsListRef.current.contains(e.target) && !props.switchButton.current.contains(e.target)){
         props.setIsOpen(false)
       }
     }
@@ -20,7 +21,7 @@ const YearsList = (props) => {
             <ul>
             <li  onClick={() => props.setSelectedYear(null)}>ALL</li>
             {years.map((year) => {
-                return <li  onClick={() => props.setSelectedYear(year)}>{year}</li>
+                return <li key={nanoid()}  onClick={() => props.setSelectedYear(year)}>{year}</li>
             })}
             </ul>
       </StyledYearsList>
