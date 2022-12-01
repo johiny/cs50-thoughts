@@ -8,6 +8,7 @@ const Thought = (props) => {
   return (
     <StyledThought feeling={props.feeling}>
     {isLoading ? <ModalLoader/> : null}
+        <StyledYear>{`${props.cs50year || '2022'} Edition`}</StyledYear>
         <Textfit className='textFit' min={1} max={16}>{props.content}</Textfit>
         <ThoughtFooter>
         <LikeAndDislike upVotes={props.upVotes} downVotes={props.DownVotes} id={props.id} setIsLoading={setIsLoading}/>
@@ -16,6 +17,13 @@ const Thought = (props) => {
     </StyledThought>
   )
 }
+
+const StyledYear = styled.span`
+  font-size: 1.5vh;
+  margin: none;
+  font-style: italic;
+  opacity: 0.8;
+`
 
 const StyledThought = styled.div`
 --card-color: ${props=> props.feeling === 'positive' ? '#17b852' : '#ac011b' };

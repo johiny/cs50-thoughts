@@ -22,7 +22,13 @@ const ThoughtsProviderAndController = ({children}) => {
     //make first query to api
     useEffect(() => {
         const thoughtsRoute = `${apiEndpoint}${axiosQuery}`
-        apiCall(thoughtsRoute, 5, setApiCallIsLoading, setThoughts)
+        // apiCall(thoughtsRoute, 5, setApiCallIsLoading, setThoughts)
+       const fakeCall = async () => {
+        const data = await fakeAxios()
+        setThoughts(data.data)
+       }
+       fakeCall()
+       console.log(thoughts)
     },[filters])
 
     //see if there is more thought
