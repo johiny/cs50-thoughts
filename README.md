@@ -1,4 +1,4 @@
-# 🎴CS50Thoughts
+# 🎴***CS50Thoughts***🎨
 
 ## Table of Contents
 
