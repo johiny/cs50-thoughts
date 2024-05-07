@@ -56,6 +56,7 @@ const StyledThought = styled.div`
     grid-column: span 2;
   }
   @media only screen and (min-width: 1200px)  {
+    max-width: 242px;
     grid-column: span 1;
     grid-row: span 5;
     }
